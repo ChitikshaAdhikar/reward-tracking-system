@@ -250,4 +250,4 @@ Transactions.propTypes = {
   ).isRequired,
 };
 
-export default Transactions;
+export default React.memo(Transactions);

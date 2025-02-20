@@ -34,38 +34,7 @@ A React-based system that calculates and displays reward points earned by custom
 A overview of the project's folder structure:
 
 reward-tracking-system
-+---public
-|   |   index.html
-|   |   transactionData.json        
-|
-\---src
-    |   App.js
-    |   index.css
-    |   index.js
-    |
-    +---components
-    |       Home.js
-    |       MonthlyRewards.js
-    |       NavigationHeader.js
-    |       TotalRewards.js
-    |       Transactions.js
-    |
-    +---services
-    |       transaction.service.js
-    |
-    +---test
-    |       globalFilterComponent.test.js
-    |       home.test.js
-    |       monthlyRewards.test.js
-    |       rewardsCalculator.test.js
-    |       totalRewards.test.js
-    |       transactionComponent.test.js
-    |
-    \---utils
-            dataTransformationUtils.js
-            GenericTable.js
-            GlobalFilter.js
-            rewardsCalculator.js
+![alt text](./public/projectDirectoryStructure.png)
 
 ### Screenshot
 

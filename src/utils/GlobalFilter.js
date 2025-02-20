@@ -1,3 +1,9 @@
+/**
+ * @file GlobalFilter.js
+ * @description A reusable component that provides filter input fields for Customer Name, From Date, and To Date,
+ * along with Apply and Reset buttons.
+ */
+
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Box, TextField, Button } from "@mui/material";

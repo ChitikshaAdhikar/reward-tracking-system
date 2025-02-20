@@ -1,3 +1,9 @@
+/**
+ * @file NavigationHeader.js
+ * @description Renders the navigation bar for switching between views (transactions, monthly rewards, total rewards).
+ */
+
+
 import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";

@@ -1,3 +1,8 @@
+/**
+ * @file Home.js
+ * @description Main container component that fetches transactions, manages global filter state, and renders the appropriate view (Transactions, MonthlyRewards, or TotalRewards) based on the current tab.
+ */
+
 import React, { useState, useEffect } from "react";
 import Transactions from "../components/Transactions";
 import MonthlyRewards from "../components/MonthlyRewards";

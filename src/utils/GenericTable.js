@@ -1,3 +1,8 @@
+/**
+ * @file GenericTable.js
+ * @description A generic table component that renders table headers, rows, and pagination controls using Material‑UI.
+ */
+
 import React from "react";
 import PropTypes from "prop-types";
 import {

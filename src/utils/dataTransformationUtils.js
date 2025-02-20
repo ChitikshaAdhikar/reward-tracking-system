@@ -1,3 +1,8 @@
+/**
+ * @file dataTransformationUtils.js
+ * @description Provides helper functions for sorting and paginating data.
+ */
+
 // Sorts data based on the provided sorting column and  order
 export const applySorting = (data, sorting) => {
   if (!data || data.length === 0) return [];

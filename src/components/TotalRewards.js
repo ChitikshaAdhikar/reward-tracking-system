@@ -1,3 +1,8 @@
+/**
+ * @file TotalRewards.js
+ * @description Displays total rewards data in a table with sorting, filtering, and pagination.
+ */
+
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import GenericTable from "../utils/GenericTable";

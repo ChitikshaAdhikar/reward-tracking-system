@@ -1,3 +1,7 @@
+/**
+ * @file rewardsCalculator.js
+ * @description Contains functions for calculating reward points and aggregating rewards.
+ */
 /* Calculates reward points based on the transaction price.
    The logic is as follows:
     - No points for amounts <= 50.

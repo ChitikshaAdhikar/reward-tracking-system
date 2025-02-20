@@ -33,35 +33,39 @@ A React-based system that calculates and displays reward points earned by custom
 
 A overview of the project's folder structure:
 
-reward-tracking-system/
-public/
-  transactionData.json 
-  index.html
-src/ 
-  components/
-     Home.js # Main container component managing data and views
-     NavigationHeader.js # Top navigation bar for switching views
-     Transactions.js # Displays transaction data with sorting/filtering
-     MonthlyRewards.js # Displays monthly rewards
-     TotalRewards.js # Displays total rewards
- services/
-     transaction.service.js # API service to fetch transaction data
-  utils/
-      dataTransformationUtils.js # Helper functions for sorting, pagination
-      rewardsCalculator.js # Reward calculation and filteration logic
-      GlobalFilter.js # Global filter component
-      GenericTable.js # Generic table component used by multiple views
-  App.js 
-  index.js   
-  tests/
-    globalFilter.test.js
-    transactions.test.js
-    monthlyRewards.test.js
-    totalRewards.test.js
-    home.test.js
-    rewardsCalculator.js
-package.json
-README.md
+reward-tracking-system
++---public
+|   |   index.html
+|   |   transactionData.json        
+|
+\---src
+    |   App.js
+    |   index.css
+    |   index.js
+    |
+    +---components
+    |       Home.js
+    |       MonthlyRewards.js
+    |       NavigationHeader.js
+    |       TotalRewards.js
+    |       Transactions.js
+    |
+    +---services
+    |       transaction.service.js
+    |
+    +---test
+    |       globalFilterComponent.test.js
+    |       home.test.js
+    |       monthlyRewards.test.js
+    |       rewardsCalculator.test.js
+    |       totalRewards.test.js
+    |       transactionComponent.test.js
+    |
+    \---utils
+            dataTransformationUtils.js
+            GenericTable.js
+            GlobalFilter.js
+            rewardsCalculator.js
 
 ### Screenshot
 

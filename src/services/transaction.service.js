@@ -1,6 +1,6 @@
 
 export const fetchTransactions = async () => {
-  const response = await fetch("/transactionData.json");
+  const response = await fetch("../transactionData.json");
   if (!response.ok) {
     throw new Error("Failed to fetch transactions");
   }

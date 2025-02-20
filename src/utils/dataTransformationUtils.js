@@ -1,12 +1,3 @@
-import { genericFilter } from "./genericFilter";
-
-// Applies filtering to the data using provided configurations
-export const applyFilters = (data, filters, config) => {
-  if (!data || data.length === 0) return [];
-  const filterFns = genericFilter(filters, config);
-  return data.filter((item) => filterFns.every((fn) => fn(item)));
-};
-
 // Sorts data based on the provided sorting column and  order
 export const applySorting = (data, sorting) => {
   if (!data || data.length === 0) return [];

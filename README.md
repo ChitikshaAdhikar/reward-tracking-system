@@ -29,24 +29,56 @@ A React-based system that calculates and displays reward points earned by custom
 - **Simulated API:**
   - Fetches transaction data from a local JSON file with loading and error handling
 
+### Project Directory Structure
+
+A overview of the project's folder structure:
+
+reward-tracking-system/
+public/
+  transactionData.json 
+  index.html
+src/ 
+  components/
+     Home.js # Main container component managing data and views
+     NavigationHeader.js # Top navigation bar for switching views
+     Transactions.js # Displays transaction data with sorting/filtering
+     MonthlyRewards.js # Displays monthly rewards
+     TotalRewards.js # Displays total rewards
+ services/
+     transaction.service.js # API service to fetch transaction data
+  utils/
+      dataTransformationUtils.js # Helper functions for sorting, pagination
+      rewardsCalculator.js # Reward calculation and filteration logic
+      GlobalFilter.js # Global filter component
+      GenericTable.js # Generic table component used by multiple views
+  App.js 
+  index.js   
+  tests/
+    globalFilter.test.js
+    transactions.test.js
+    monthlyRewards.test.js
+    totalRewards.test.js
+    home.test.js
+    rewardsCalculator.js
+package.json
+README.md
+
 ### Screenshot
 
-![Transaction Screenshot](./screenshots/transactions.png)
-![Transaction Screenshot with Filter](./screenshots/transactionFilter.png)
-![Transaction Screenshot Mobile View ](./screenshots/transactionsMobileView.png)
-![Mothly Rewards Screenshot](./screenshots/monthlyRewards.png)
-![Mothly Rewards Screenshot with Filter](./screenshots/monthlyRewardFilter.png)
-![Mothly Rewards Screenshot Mobile View ](./screenshots/monthlyRewardsMobileView.png)
-![Total Rewards Screenshot](./screenshots/totalRewards.png)
-![Total Rewards Screenshot with Filter](./screenshots/totalRewardsFilters.png)
-![Total Rewards Screenshot Mobile View ](./screenshots/totalRewardsMobileView.png)
+![Transaction Screenshot](![alt text](./public/screenshots/image-9.png))
+![Transaction Screenshot with Filter](![alt text](./public/screenshots/image-4.png))
+![Transaction Screenshot Errored ](![alt text](./public/screenshots/image-10.png))
+![Mothly Rewards Screenshot](![alt text](./public/screenshots/image-8.png))
+![Mothly Rewards Screenshot with Filter](![alt text](./public/screenshots/image-5.png))
+![Total Rewards Screenshot](![alt text](./public/screenshots/image-7.png))
+![Total Rewards Screenshot with Filter](![alt text](./public/screenshots/image-6.png))
 
 ### Installation
 
 1. **Clone the repository:**
 
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/ChitikshaAdhikar/reward-tracking-system
+   cd reward-tracking-system
 
 2. **Install dependencies:**
 
@@ -67,7 +99,20 @@ To run tests using Jest:
 npm test
 
 For watch mode:
+
 npm test --watch
+
+### Viewing Code Coverage
+
+Jest includes built‑in support for generating code coverage reports:
+
+Run tests with coverage:
+
+npm test -- --coverage
+
+### Test Coverage
+
+![alt text](./public/image.png)
 
 ## Usage
 
@@ -80,10 +125,16 @@ npm test --watch
   - calculateRewardPoints(price)
   - getMonthlyRewards(transactions)
   - getTotalRewards(transactions)
+  - getFilteredTransactions(transactions, globalFilter)
 
 - **Data Transformation:**  
-  Helper functions in dataTransformationUtils.js handle filtering, sorting, and pagination of data.
+  Helper functions in dataTransformationUtils.js handle sorting, and pagination of data.
 
 - **User Interface:**  
-  The syatem provides interactive filtering (via Autocomplete and TextField inputs), sortable columns, and pagination controls powered by Material‑UI.
+  The system provides interactive filtering, sortable columns, and pagination controls powered by Material‑UI.
 
+- **Global Filter:**
+  The GlobalFilter.js component offers input fields for Customer Name, From Date, and To Date along with Apply and Reset buttons. This component centralizes the filtering criteria used by other views.
+
+- **Generic Table:**
+  The GenericTable.js component in the utils folder is used to render tables across multiple views (Transactions, MonthlyRewards, TotalRewards) to ensure a consistent and reusable table UI.

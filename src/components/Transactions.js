@@ -29,9 +29,10 @@ const Transactions = ({ transactions, globalFilters }) => {
   // getFilteredTransactions applies the filtering logic based on globalFilters.
   const filteredTransactions = useMemo(() => {
     try {
-      getFilteredTransactions(transactions, globalFilters);
+      return getFilteredTransactions(transactions, globalFilters);
     } catch (err) {
       console.log("Error in Transactions:" + err);
+      return [];
     }
   }, [transactions, globalFilters]);
 
@@ -93,7 +94,7 @@ const Transactions = ({ transactions, globalFilters }) => {
           rowsPerPage: pagination.rowsPerPage,
           onPageChange: handleChangePage,
         }}
-        rowKey={(row) => row.id}
+        rowKey={(row,idx) => idx}
       />
     </div>
   );

@@ -30,7 +30,7 @@ const GenericTable = ({
       onSort(columnId);
     }
   };
-
+  
   return (
     <>
       <TableContainer component={Paper}>

@@ -34,17 +34,47 @@ A React-based system that calculates and displays reward points earned by custom
 A overview of the project's folder structure:
 
 reward-tracking-system
-![alt text](./public/projectDirectoryStructure.png)
+├── reward-tracking-system/
+├── ├── public/
+├── │   ├── index.html
+├── ├── src/
+├── │   ├── components/
+├── │   │   ├── commonComponents/
+├── │   │   │   ├── ErrorFallback.js        
+├── │   │   │   ├── GlobalFilter.js         
+├── │   │   │   └── Loader.js               
+├── │   │   ├── NavigationHeader.js         
+├── │   │   ├── Transactions.js             
+├── │   │   ├── MonthlyRewards.js           
+├── │   │   └── TotalRewards.js             
+├── │   ├── screens/
+├── │   │   └── Home.js                     
+├── │   ├── services/
+├── │   │   └── transaction.service.js      
+├── │   ├── utils/
+├── │   │   ├── dataTransformationUtils.js  
+├── │   │   └── rewardsCalculator.js        
+├── │   ├── tests/                          
+├── │   │   ├── Home.test.js
+├── │   │   ├── GlobalFilter.test.js
+├── │   │   ├── Transactions.test.js
+├── │   │   ├── MonthlyRewards.test.js
+├── │   │   └── TotalRewards.test.js
+├── │   ├── App.js                          
+├── │   └── index.js                        
+├── ├── package.json
+├── ├── README.md
 
 ### Screenshot
 
-![Transaction Screenshot](![alt text](./public/screenshots/image-9.png))
-![Transaction Screenshot with Filter](![alt text](./public/screenshots/image-4.png))
-![Transaction Screenshot Errored ](![alt text](./public/screenshots/image-10.png))
-![Mothly Rewards Screenshot](![alt text](./public/screenshots/image-8.png))
-![Mothly Rewards Screenshot with Filter](![alt text](./public/screenshots/image-5.png))
-![Total Rewards Screenshot](![alt text](./public/screenshots/image-7.png))
-![Total Rewards Screenshot with Filter](![alt text](./public/screenshots/image-6.png))
+![Transaction Screenshot](!(./public/screenshots/image-9.png))
+![Transaction Screenshot with Filter](!(./public/screenshots/image-4.png))
+![Transaction Screenshot Errored ](!(./public/screenshots/image-10.png))
+![Mothly Rewards Screenshot](!(./public/screenshots/image-8.png))
+![Mothly Rewards Screenshot with Filter](!(./public/screenshots/image-5.png))
+![Total Rewards Screenshot](!(./public/screenshots/image-7.png))
+![Total Rewards Screenshot with Filter](!(./public/screenshots/image-6.png))
+![Home page error screenshot](!(./public/screenshots/image-11.png))
 
 ### Installation
 
@@ -111,3 +141,6 @@ npm test -- --coverage
 
 - **Generic Table:**
   The GenericTable.js component in the utils folder is used to render tables across multiple views (Transactions, MonthlyRewards, TotalRewards) to ensure a consistent and reusable table UI.
+
+- **Error UI Fallback Component:**
+The  ErrorFallback component is used as a fallback UI within an ErrorBoundary. If any runtime errors occur in the component tree for example, in the Home component or its children, the ErrorBoundary catches the error and renders the ErrorFallback component.

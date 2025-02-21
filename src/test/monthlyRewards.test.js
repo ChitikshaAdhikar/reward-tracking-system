@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import MonthlyRewards from "../components/MonthlyRewards";
 
 // Mock GenericTable.
-jest.mock("../utils/GenericTable", () => (props) => (
+jest.mock("../components/commonComponents/GenericTable", () => (props) => (
   <div data-testid="generic-table">
     {props.data && props.data.map((row, index) => (
       <div key={index} data-testid="table-row">
@@ -33,9 +33,9 @@ describe("MonthlyRewards Component", () => {
     expect(rows).toHaveLength(3);
 
   
-    expect(screen.getByText(/1 - Ross - 1 - 2023/i)).toBeInTheDocument();
-    expect(screen.getByText(/1 - Ross - 2 - 2023/i)).toBeInTheDocument();
-    expect(screen.getByText(/2 - Monica - 2 - 2023/i)).toBeInTheDocument();
+    expect(screen.getByText(/1 - Ross - January - 2023/i)).toBeInTheDocument();
+    expect(screen.getByText(/1 - Ross - February - 2023/i)).toBeInTheDocument();
+    expect(screen.getByText(/2 - Monica - February - 2023/i)).toBeInTheDocument();
   });
 
   //When transactions array is empty no rows should be rendered.

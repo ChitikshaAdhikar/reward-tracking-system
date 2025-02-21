@@ -59,7 +59,6 @@ const Home = ({ currentTab }) => {
   useEffect(() => {
     fetchTransactions()
       .then((data) => {
-        console.log(data);
         setState({
           transactions: data,
           error: null,
@@ -78,7 +77,6 @@ const Home = ({ currentTab }) => {
         }));
       });
   }, []);
-
   // Renders the appropriate view based on the currentTab prop.
   const renderView = () => {
     switch (currentTab) {

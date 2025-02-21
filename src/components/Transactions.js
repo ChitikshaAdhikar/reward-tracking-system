@@ -99,7 +99,7 @@ const Transactions = ({ transactions, globalFilters }) => {
           rowsPerPage: pagination.rowsPerPage,
           onPageChange: handleChangePage,
         }}
-        rowKey={(row, idx) => idx}
+        rowKey={(row, idx) => row.transactionId}
       />
     </div>
   );

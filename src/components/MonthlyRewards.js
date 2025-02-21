@@ -86,7 +86,6 @@ const MonthlyRewards = ({ transactions, globalFilters }) => {
           rowsPerPage: pagination.rowsPerPage,
           onPageChange: handleChangePage,
         }}
-        rowKey={(row, idx) => idx}
       />
     </div>
   );

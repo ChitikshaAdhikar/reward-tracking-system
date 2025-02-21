@@ -71,7 +71,7 @@ describe("getMonthlyRewards", () => {
       (transaction) =>
         transaction.customerId === 1 &&
         transaction.year === 2023 &&
-        transaction.month === 2
+        transaction.month === "February"
     )[0];
     expect(joeFeb).toBeDefined();
     expect(joeFeb.rewardPoints).toBe(370);
@@ -80,7 +80,7 @@ describe("getMonthlyRewards", () => {
       (transaction) =>
         transaction.customerId === 2 &&
         transaction.year === 2023 &&
-        transaction.month === 2
+        transaction.month === "February"
     )[0];
     expect(chandlerFeb).toBeDefined();
     expect(chandlerFeb.rewardPoints).toBe(15);
@@ -119,7 +119,7 @@ describe("getMonthlyRewards", () => {
     const result = getMonthlyRewards(transactions, filters);
     expect(result).toHaveLength(1);
     expect(result[0].customerName).toBe("Joe");
-    expect(result[0].month).toBe(2);
+    expect(result[0].month).toBe("February");
   });
 });
 

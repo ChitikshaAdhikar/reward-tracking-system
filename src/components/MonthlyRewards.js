@@ -1,28 +1,35 @@
-/**
- * @file MonthlyRewards.js
- * @description Displays monthly rewards data in a table with sorting, filtering, and pagination.
- */
-
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
-import GenericTable from "../utils/GenericTable";
+import GenericTable from "./commonComponents/GenericTable";
 import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
 import { getMonthlyRewards } from "../utils/rewardsCalculator";
 
+/**
+ * @file MonthlyRewards.js
+ * @description This component calculates and displays monthly aggregated reward points based on
+ * filtered transaction data. It supports sorting and pagination, allowing users
+ * to view reward data by customer, month, and year.
+ * @component  MonthlyRewards
+ * @param {Object} props - Component properties.
+ * @param {Array} props.transactions - Array of transaction objects.
+ * @param {Object} props.globalFilters - Global filters (customerName, fromDate, toDate) to apply on transactions.
+ * @returns {JSX.Element} The rendered MonthlyRewards table.
+ */
+
 const MonthlyRewards = ({ transactions, globalFilters }) => {
-  // Local state to handle sorting
+  // Local state to handle sorting 
   const [sorting, setSorting] = useState({
     column: "customerName",
     order: "asc",
   });
 
-  // Local state to manage pagination
+  // Local state to manage pagination with default values.
   const [pagination, setPagination] = useState({ page: 0, rowsPerPage: 5 });
 
-  // Get filtered monthly rewards
+  //Get filtered monthly rewards data by applying the global filters.
   const filteredMonthlyRewards = useMemo(() => {
     try {
       return getMonthlyRewards(transactions, globalFilters);
@@ -44,7 +51,7 @@ const MonthlyRewards = ({ transactions, globalFilters }) => {
     [sortedData, pagination]
   );
 
-  // Handler function for sorting
+  // Handler function for sorting 
   const handleSort = (column) => {
     setSorting((prev) => ({
       column,

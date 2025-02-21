@@ -1,17 +1,22 @@
-/**
- * @file Transactions.js
- * @description Displays transaction data in a table with sorting, filtering, and pagination.
- */
-
-
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
-import GenericTable from "../utils/GenericTable";
+import GenericTable from "./commonComponents/GenericTable";
 import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
 import { getFilteredTransactions } from "../utils/rewardsCalculator";
+
+/**
+ * @file Transactions.js
+ * @description This component filters, sorts, and paginates a list of transactions,
+ * then displays them in a table using the GenericTable component.
+ * @component  Transactions
+ * @param {Object} props - Component properties.
+ * @param {Array} props.transactions - Array of transaction objects.
+ * @param {Object} props.globalFilters - Global filters (e.g., customerName, fromDate, toDate) applied to transactions.
+ * @returns {JSX.Element} The rendered Transactions component.
+ */
 
 const Transactions = ({ transactions, globalFilters }) => {
   // State for sorting
@@ -94,7 +99,7 @@ const Transactions = ({ transactions, globalFilters }) => {
           rowsPerPage: pagination.rowsPerPage,
           onPageChange: handleChangePage,
         }}
-        rowKey={(row,idx) => idx}
+        rowKey={(row, idx) => idx}
       />
     </div>
   );

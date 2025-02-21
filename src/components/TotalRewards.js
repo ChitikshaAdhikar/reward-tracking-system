@@ -1,17 +1,22 @@
-/**
- * @file TotalRewards.js
- * @description Displays total rewards data in a table with sorting, filtering, and pagination.
- */
-
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
-import GenericTable from "../utils/GenericTable";
+import GenericTable from "./commonComponents/GenericTable";
 import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
 import { getTotalRewards } from "../utils/rewardsCalculator";
 
+/**
+ * @file TotalRewards.js
+ * @description  This component calculates and displays aggregated total reward points per customer
+ * based on the provided transactions and global filters. It supports sorting and pagination.
+ * @component TotalRewards
+ * @param {Object} props - Component props.
+ * @param {Array} props.transactions - An array of transaction objects.
+ * @param {Object} props.globalFilters - Global filters (customerName, fromDate, toDate) to filter transactions.
+ * @returns {JSX.Element} The rendered TotalRewards table.
+ */
 const TotalRewards = ({ transactions, globalFilters }) => {
   // State to handle sorting
   const [sorting, setSorting] = useState({
@@ -27,11 +32,11 @@ const TotalRewards = ({ transactions, globalFilters }) => {
     try {
       return getTotalRewards(transactions, globalFilters);
     } catch (error) {
-      console.error("Error computing monthly rewards:", error);
+      console.error("Error computing total rewards:", error);
       return [];
     }
   }, [transactions, globalFilters]);
-  
+
   // Apply sorting to the filtered total rewards
   const sortedData = useMemo(
     () => applySorting(filteredTotalRewards, sorting),

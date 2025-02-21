@@ -1,100 +1,484 @@
 {
   "transactions": [
     {
-      "transactionId": "tds1023",
+      "transactionId": "tds1061",
       "customerId": "ctm3400",
       "customerName": "Ross Geller",
-      "purchaseDate": "2023-12-15",
+      "purchaseDate": "2025-01-01",
       "product": "Smartphone",
-      "price": 120.75
+      "price": 250.0
     },
     {
-      "transactionId": "tds1024",
+      "transactionId": "tds1062",
       "customerId": "ctm3401",
       "customerName": "Rachel Green",
-      "purchaseDate": "2023-12-20",
+      "purchaseDate": "2025-01-31",
       "product": "Laptop",
-      "price": 795.54
+      "price": 805.0
     },
     {
-      "transactionId": "tds1025",
-      "customerId": "ctm3400",
-      "customerName": "Ross Geller",
-      "purchaseDate": "2024-01-10",
-      "product": "Tablet",
-      "price": 200.98
-    },
-    {
-      "transactionId": "tds1026",
+      "transactionId": "tds1063",
       "customerId": "ctm3402",
       "customerName": "Monica Geller",
-      "purchaseDate": "2024-01-22",
-      "product": "Headphones",
-      "price": 50.96
-    },
-    {
-      "transactionId": "tds1027",
-      "customerId": "ctm3401",
-      "customerName": "Rachel Green",
-      "purchaseDate": "2024-02-05",
-      "product": "Smartwatch",
-      "price": 110.94
-    },
-    {
-      "transactionId": "tds1028",
-      "customerId": "ctm3400",
-      "customerName": "Ross Geller",
-      "purchaseDate": "2024-02-18",
-      "product": "Camera",
-      "price": 80.93
-    },
-    {
-      "transactionId": "tds1029",
-      "customerId": "ctm3400",
-      "customerName": "Ross Geller",
-      "purchaseDate": "2023-12-16",
-      "product": "Smartphone",
-      "price": 125.67
-    },
-    {
-      "transactionId": "tds1030",
-      "customerId": "ctm3401",
-      "customerName": "Rachel Green",
-      "purchaseDate": "2023-12-28",
-      "product": "Laptop",
-      "price": 450.32
-    },
-    {
-      "transactionId": "tds1031",
-      "customerId": "ctm3400",
-      "customerName": "Ross Geller",
-      "purchaseDate": "2024-01-10",
+      "purchaseDate": "2024-09-03",
       "product": "Tablet",
-      "price": 200.65
+      "price": 360.0
     },
     {
-      "transactionId": "tds1032",
+      "transactionId": "tds1064",
+      "customerId": "ctm3403",
+      "customerName": "Chandler Bing",
+      "purchaseDate": "2024-12-04",
+      "product": "Headphones",
+      "price": 115.0
+    },
+    {
+      "transactionId": "tds1065",
+      "customerId": "ctm3404",
+      "customerName": "Joey Tribbiani",
+      "purchaseDate": "2024-12-31",
+      "product": "Smartwatch",
+      "price": 200.0
+    },
+    {
+      "transactionId": "tds1066",
+      "customerId": "ctm3405",
+      "customerName": "Phoebe Buffay",
+      "purchaseDate": "2024-05-06",
+      "product": "Camera",
+      "price": 625.0
+    },
+    {
+      "transactionId": "tds1067",
+      "customerId": "ctm3406",
+      "customerName": "Sheldon Cooper",
+      "purchaseDate": "2024-05-07",
+      "product": "Smartphone",
+      "price": 280.0
+    },
+    {
+      "transactionId": "tds1068",
+      "customerId": "ctm3407",
+      "customerName": "Leonard Hofstadter",
+      "purchaseDate": "2024-05-08",
+      "product": "Laptop",
+      "price": 835.0
+    },
+    {
+      "transactionId": "tds1069",
+      "customerId": "ctm3408",
+      "customerName": "Howard Wolowitz",
+      "purchaseDate": "2024-05-09",
+      "product": "Tablet",
+      "price": 390.0
+    },
+    {
+      "transactionId": "tds1070",
+      "customerId": "ctm3409",
+      "customerName": "Raj Koothrappali",
+      "purchaseDate": "2025-02-10",
+      "product": "Headphones",
+      "price": 145.0
+    },
+    {
+      "transactionId": "tds1071",
+      "customerId": "ctm3400",
+      "customerName": "Ross Geller",
+      "purchaseDate": "2024-05-11",
+      "product": "Smartwatch",
+      "price": 180.0
+    },
+    {
+      "transactionId": "tds1072",
+      "customerId": "ctm3401",
+      "customerName": "Rachel Green",
+      "purchaseDate": "2024-05-12",
+      "product": "Camera",
+      "price": 605.0
+    },
+    {
+      "transactionId": "tds1073",
       "customerId": "ctm3402",
       "customerName": "Monica Geller",
-      "purchaseDate": "2024-01-22",
+      "purchaseDate": "2024-05-13",
+      "product": "Smartphone",
+      "price": 260.0
+    },
+    {
+      "transactionId": "tds1074",
+      "customerId": "ctm3403",
+      "customerName": "Chandler Bing",
+      "purchaseDate": "2025-01-14",
+      "product": "Laptop",
+      "price": 815.0
+    },
+    {
+      "transactionId": "tds1075",
+      "customerId": "ctm3404",
+      "customerName": "Joey Tribbiani",
+      "purchaseDate": "2024-05-15",
+      "product": "Tablet",
+      "price": 370.0
+    },
+    {
+      "transactionId": "tds1076",
+      "customerId": "ctm3405",
+      "customerName": "Phoebe Buffay",
+      "purchaseDate": "2024-05-16",
       "product": "Headphones",
-      "price": 50.00
+      "price": 125.0
     },
     {
-      "transactionId": "tds1033",
-      "customerId": "ctm3401",
-      "customerName": "Rachel Green",
-      "purchaseDate": "2024-02-07",
+      "transactionId": "tds1077",
+      "customerId": "ctm3406",
+      "customerName": "Sheldon Cooper",
+      "purchaseDate": "2024-05-17",
       "product": "Smartwatch",
-      "price": 80.25
+      "price": 210.0
     },
     {
-      "transactionId": "tds1034",
+      "transactionId": "tds1078",
+      "customerId": "ctm3407",
+      "customerName": "Leonard Hofstadter",
+      "purchaseDate": "2024-05-18",
+      "product": "Camera",
+      "price": 635.0
+    },
+    {
+      "transactionId": "tds1079",
+      "customerId": "ctm3408",
+      "customerName": "Howard Wolowitz",
+      "purchaseDate": "2024-05-19",
+      "product": "Smartphone",
+      "price": 290.0
+    },
+    {
+      "transactionId": "tds1080",
+      "customerId": "ctm3409",
+      "customerName": "Raj Koothrappali",
+      "purchaseDate": "2025-01-20",
+      "product": "Laptop",
+      "price": 845.0
+    },
+    {
+      "transactionId": "tds1081",
       "customerId": "ctm3400",
       "customerName": "Ross Geller",
-      "purchaseDate": "2024-02-18",
+      "purchaseDate": "2024-12-31",
+      "product": "Tablet",
+      "price": 350.0
+    },
+    {
+      "transactionId": "tds1082",
+      "customerId": "ctm3401",
+      "customerName": "Rachel Green",
+      "purchaseDate": "2024-11-22",
+      "product": "Headphones",
+      "price": 155.0
+    },
+    {
+      "transactionId": "tds1083",
+      "customerId": "ctm3402",
+      "customerName": "Monica Geller",
+      "purchaseDate": "2024-05-23",
+      "product": "Smartwatch",
+      "price": 240.0
+    },
+    {
+      "transactionId": "tds1084",
+      "customerId": "ctm3403",
+      "customerName": "Chandler Bing",
+      "purchaseDate": "2024-05-24",
       "product": "Camera",
-      "price": 80.67
+      "price": 665.0
+    },
+    {
+      "transactionId": "tds1085",
+      "customerId": "ctm3404",
+      "customerName": "Joey Tribbiani",
+      "purchaseDate": "2024-05-25",
+      "product": "Smartphone",
+      "price": 320.0
+    },
+    {
+      "transactionId": "tds1086",
+      "customerId": "ctm3405",
+      "customerName": "Phoebe Buffay",
+      "purchaseDate": "2024-05-26",
+      "product": "Laptop",
+      "price": 875.0
+    },
+    {
+      "transactionId": "tds1087",
+      "customerId": "ctm3406",
+      "customerName": "Sheldon Cooper",
+      "purchaseDate": "2024-05-27",
+      "product": "Tablet",
+      "price": 430.0
+    },
+    {
+      "transactionId": "tds1088",
+      "customerId": "ctm3407",
+      "customerName": "Leonard Hofstadter",
+      "purchaseDate": "2024-05-28",
+      "product": "Headphones",
+      "price": 185.0
+    },
+    {
+      "transactionId": "tds1089",
+      "customerId": "ctm3408",
+      "customerName": "Howard Wolowitz",
+      "purchaseDate": "2024-05-29",
+      "product": "Smartwatch",
+      "price": 270.0
+    },
+    {
+      "transactionId": "tds1090",
+      "customerId": "ctm3409",
+      "customerName": "Raj Koothrappali",
+      "purchaseDate": "2024-05-30",
+      "product": "Camera",
+      "price": 695.0
+    },
+    {
+      "transactionId": "tds1091",
+      "customerId": "ctm3400",
+      "customerName": "Ross Geller",
+      "purchaseDate": "2024-05-31",
+      "product": "Smartphone",
+      "price": 250.0
+    },
+    {
+      "transactionId": "tds1092",
+      "customerId": "ctm3401",
+      "customerName": "Rachel Green",
+      "purchaseDate": "2024-06-01",
+      "product": "Laptop",
+      "price": 805.0
+    },
+    {
+      "transactionId": "tds1093",
+      "customerId": "ctm3402",
+      "customerName": "Monica Geller",
+      "purchaseDate": "2024-06-02",
+      "product": "Tablet",
+      "price": 360.0
+    },
+    {
+      "transactionId": "tds1094",
+      "customerId": "ctm3403",
+      "customerName": "Chandler Bing",
+      "purchaseDate": "2024-06-03",
+      "product": "Headphones",
+      "price": 115.0
+    },
+    {
+      "transactionId": "tds1095",
+      "customerId": "ctm3404",
+      "customerName": "Joey Tribbiani",
+      "purchaseDate": "2024-06-04",
+      "product": "Smartwatch",
+      "price": 200.0
+    },
+    {
+      "transactionId": "tds1096",
+      "customerId": "ctm3405",
+      "customerName": "Phoebe Buffay",
+      "purchaseDate": "2024-06-05",
+      "product": "Camera",
+      "price": 625.0
+    },
+    {
+      "transactionId": "tds1097",
+      "customerId": "ctm3406",
+      "customerName": "Sheldon Cooper",
+      "purchaseDate": "2024-06-06",
+      "product": "Smartphone",
+      "price": 280.0
+    },
+    {
+      "transactionId": "tds1098",
+      "customerId": "ctm3407",
+      "customerName": "Leonard Hofstadter",
+      "purchaseDate": "2024-06-07",
+      "product": "Laptop",
+      "price": 835.0
+    },
+    {
+      "transactionId": "tds1099",
+      "customerId": "ctm3408",
+      "customerName": "Howard Wolowitz",
+      "purchaseDate": "2024-06-08",
+      "product": "Tablet",
+      "price": 390.0
+    },
+    {
+      "transactionId": "tds1100",
+      "customerId": "ctm3409",
+      "customerName": "Raj Koothrappali",
+      "purchaseDate": "2024-06-09",
+      "product": "Headphones",
+      "price": 145.0
+    },
+    {
+      "transactionId": "tds1101",
+      "customerId": "ctm3400",
+      "customerName": "Ross Geller",
+      "purchaseDate": "2024-06-10",
+      "product": "Smartwatch",
+      "price": 180.0
+    },
+    {
+      "transactionId": "tds1102",
+      "customerId": "ctm3401",
+      "customerName": "Rachel Green",
+      "purchaseDate": "2024-06-11",
+      "product": "Camera",
+      "price": 655.0
+    },
+    {
+      "transactionId": "tds1103",
+      "customerId": "ctm3402",
+      "customerName": "Monica Geller",
+      "purchaseDate": "2024-06-12",
+      "product": "Smartphone",
+      "price": 310.0
+    },
+    {
+      "transactionId": "tds1104",
+      "customerId": "ctm3403",
+      "customerName": "Chandler Bing",
+      "purchaseDate": "2024-06-13",
+      "product": "Laptop",
+      "price": 865.0
+    },
+    {
+      "transactionId": "tds1105",
+      "customerId": "ctm3404",
+      "customerName": "Joey Tribbiani",
+      "purchaseDate": "2024-06-14",
+      "product": "Tablet",
+      "price": 420.0
+    },
+    {
+      "transactionId": "tds1106",
+      "customerId": "ctm3405",
+      "customerName": "Phoebe Buffay",
+      "purchaseDate": "2024-06-15",
+      "product": "Headphones",
+      "price": 175.0
+    },
+    {
+      "transactionId": "tds1107",
+      "customerId": "ctm3406",
+      "customerName": "Sheldon Cooper",
+      "purchaseDate": "2024-06-16",
+      "product": "Smartwatch",
+      "price": 260.0
+    },
+    {
+      "transactionId": "tds1108",
+      "customerId": "ctm3407",
+      "customerName": "Leonard Hofstadter",
+      "purchaseDate": "2024-06-17",
+      "product": "Camera",
+      "price": 685.0
+    },
+    {
+      "transactionId": "tds1109",
+      "customerId": "ctm3408",
+      "customerName": "Howard Wolowitz",
+      "purchaseDate": "2024-06-18",
+      "product": "Smartphone",
+      "price": 340.0
+    },
+    {
+      "transactionId": "tds1110",
+      "customerId": "ctm3409",
+      "customerName": "Raj Koothrappali",
+      "purchaseDate": "2024-06-19",
+      "product": "Laptop",
+      "price": 895.0
+    },
+    {
+      "transactionId": "tds1111",
+      "customerId": "ctm3400",
+      "customerName": "Ross Geller",
+      "purchaseDate": "2024-06-20",
+      "product": "Tablet",
+      "price": 350.0
+    },
+    {
+      "transactionId": "tds1112",
+      "customerId": "ctm3401",
+      "customerName": "Rachel Green",
+      "purchaseDate": "2024-06-21",
+      "product": "Headphones",
+      "price": 105.0
+    },
+    {
+      "transactionId": "tds1113",
+      "customerId": "ctm3402",
+      "customerName": "Monica Geller",
+      "purchaseDate": "2024-06-22",
+      "product": "Smartwatch",
+      "price": 190.0
+    },
+    {
+      "transactionId": "tds1114",
+      "customerId": "ctm3403",
+      "customerName": "Chandler Bing",
+      "purchaseDate": "2024-06-23",
+      "product": "Camera",
+      "price": 615.0
+    },
+    {
+      "transactionId": "tds1115",
+      "customerId": "ctm3404",
+      "customerName": "Joey Tribbiani",
+      "purchaseDate": "2024-06-24",
+      "product": "Smartphone",
+      "price": 270.0
+    },
+    {
+      "transactionId": "tds1116",
+      "customerId": "ctm3405",
+      "customerName": "Phoebe Buffay",
+      "purchaseDate": "2024-06-25",
+      "product": "Laptop",
+      "price": 825.0
+    },
+    {
+      "transactionId": "tds1117",
+      "customerId": "ctm3406",
+      "customerName": "Sheldon Cooper",
+      "purchaseDate": "2024-06-26",
+      "product": "Tablet",
+      "price": 380.0
+    },
+    {
+      "transactionId": "tds1118",
+      "customerId": "ctm3407",
+      "customerName": "Leonard Hofstadter",
+      "purchaseDate": "2024-06-27",
+      "product": "Headphones",
+      "price": 135.0
+    },
+    {
+      "transactionId": "tds1119",
+      "customerId": "ctm3408",
+      "customerName": "Howard Wolowitz",
+      "purchaseDate": "2024-06-28",
+      "product": "Smartwatch",
+      "price": 220.0
+    },
+    {
+      "transactionId": "tds1120",
+      "customerId": "ctm3409",
+      "customerName": "Raj Koothrappali",
+      "purchaseDate": "2024-06-29",
+      "product": "Camera",
+      "price": 645.0
     }
   ]
 }

@@ -2,12 +2,17 @@
  * @file rewardsCalculator.js
  * @description Contains functions for calculating reward points and aggregating rewards.
  */
-/* Calculates reward points based on the transaction price.
-   The logic is as follows:
-    - No points for amounts <= 50.
-    - For amounts between 51 and 100, points equal (amount - 50).
-    - For amounts above 100, points equal 50 and 2 points for every dollar over 100.
-*/
+
+/**
+ * @function calculateRewardPoints
+ * @description Calculates reward points based on the transaction price.
+ * The logic is as follows:
+ * - No points for amounts <= 50.
+ * - For amounts between 51 and 100, points equal (amount - 50).
+ * - For amounts above 100, points equal 50 and 2 points for every dollar over 100.
+ * @param {number} price  The transaction price.
+ * @returns {number} The calculated reward points.
+ */
 export const calculateRewardPoints = (price) => {
   // Floor the price to ignore fractional dollars.
   const amount = Math.floor(price);
@@ -17,7 +22,17 @@ export const calculateRewardPoints = (price) => {
   return 50 + (amount - 100) * 2;
 };
 
-// Filters an array of transactions based on the provided globalFilters. Additionally, calculates and attaches rewardPoints for each filtered transaction.
+/**
+ * @function getFilteredTransactions
+ * @description Filters an array of transactions based on the provided globalFilters.
+ * Additionally, calculates and attaches rewardPoints for each filtered transaction.
+ * @param {Array} transactions - The array of transactions.
+ * @param {Object} globalFilters - The global filter criteria.
+ * @param {string} [globalFilters.customerName] - Filter for customer name.
+ * @param {string} [globalFilters.fromDate] - Filter for transactions on or after this date.
+ * @param {string} [globalFilters.toDate] - Filter for transactions on or before this date.
+ * @returns {Array<Object>} The filtered transactions with an additional rewardPoints property.
+ */
 export const getFilteredTransactions = (transactions, globalFilters) => {
   try {
     const filteredTransactions = transactions.filter((transaction) => {
@@ -51,11 +66,18 @@ export const getFilteredTransactions = (transactions, globalFilters) => {
     }));
   } catch (error) {
     console.error("Error in getFilteredTransactions:", error);
-    return [];
+     return [];
   }
 };
 
-// Sum up transactions into monthly rewards.
+/**
+ * @function getMonthlyRewards
+ * @description Aggregates transactions into monthly rewards.
+ * @param {Array} transactions - The array of transaction.
+ * @param {Object} [globalFilters={}] - Optional global filter criteria.
+ * @returns {Array} An array of objects where each object represents monthly rewards for a customer.
+ * the object contains: customerId, customerName, month, year, and rewardPoints.
+ */
 export const getMonthlyRewards = (transactions, globalFilters = {}) => {
   try {
     // Apply filtering based on global filters.
@@ -108,7 +130,14 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
   }
 };
 
-// Sum up total rewards for each customer from the filtered transactions.
+/**
+ * @function getTotalRewards
+ * @description Aggregates total reward points per customer from the filtered transactions.
+ * @param {Array} transactions - The array of transactions.
+ * @param {Object} globalFilters - Optional global filter criteria.
+ * @returns {Array} An array of objects where each object represents the total rewards for a customer.
+ * the object contains: customerName and rewardPoints.
+ */
 export const getTotalRewards = (transactions, globalFilters = {}) => {
   try {
     // Apply filtering based on global filters.

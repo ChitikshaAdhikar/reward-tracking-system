@@ -1,8 +1,3 @@
-/**
- * @file GenericTable.js
- * @description A generic table component that renders table headers, rows, and pagination controls using Material‑UI.
- */
-
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -17,6 +12,30 @@ import {
   TablePagination,
 } from "@mui/material";
 
+/**
+ * @file GenericTable.js
+ * @description A generic table component that renders table headers, rows, and pagination controls using Material‑UI.
+ * @component GenericTable
+ * @param {Object} props - The component props.
+ * @param {Array} props.columns - Array of column definitions. Each object should contain:
+ *   - id - The key for accessing data from each row.
+ *   - label - The column header label.
+ *   - sortable - Indicates if the column is sortable.
+ *   - render - A custom render function for displaying the cell's data.
+ * @param {Array} props.data - Array of data objects to be rendered as rows.
+ * @param {Object} props.sorting - Sorting configuration.
+ * @param {string} props.sorting.column - The column ID that is currently sorted.
+ * @param {string} props.sorting.order - The current sort order(asc or desc).
+ * @param {function} props.onSort - Callback function that is triggered when a sortable header is clicked.
+ * @param {Object} props.pagination - Pagination configuration, including:
+ *   - count - Total number of rows.
+ *   - page - Current page.
+ *   - rowsPerPage - Number of rows per page.
+ *   - onPageChange - Callback function to handle page changes.
+ * @param {function} [props.rowKey] - Optional function that returns a unique key for each row.
+ *                                    by default, the row index will be used.
+ * @returns {JSX.Element} The rendered GenericTable component.
+ */
 const GenericTable = ({
   columns,
   data,
@@ -25,12 +44,13 @@ const GenericTable = ({
   pagination,
   rowKey,
 }) => {
+  //Handles sorting for a given column.
   const handleSort = (columnId) => {
     if (onSort) {
       onSort(columnId);
     }
   };
-  
+
   return (
     <>
       <TableContainer component={Paper}>

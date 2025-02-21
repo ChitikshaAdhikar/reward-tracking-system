@@ -1,9 +1,3 @@
-/**
- * @file NavigationHeader.js
- * @description Renders the navigation bar for switching between views (transactions, monthly rewards, total rewards).
- */
-
-
 import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
@@ -11,7 +5,17 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
+/**
+ * @file NavigationHeader.js
+ * @description Renders the navigation bar for switching between views (Transactions, Monthly Rewards, Total Rewards).
+ * @component NavigationHeader
+ * @param {Object} props - Component properties.
+ * @param {string} props.currentTab - The currently selected tab value.
+ * @param {Function} props.onSelectTab - Callback function to update the selected tab.
+ * @returns {JSX.Element} The rendered navigation header.
+ */
 const NavigationHeader = ({ currentTab, onSelectTab }) => {
+  //Handles the tab change event.
   const handleChange = (event, newTab) => {
     onSelectTab(newTab);
   };

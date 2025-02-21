@@ -8,25 +8,40 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Box, TextField, Button } from "@mui/material";
 
+/**
+ * @file GlobalFilter.js
+ * @description A reusable component that provides filter input fields for Customer Name, From Date, and To Date,
+ * along with Apply and Reset buttons.
+ * @component GlobalFilter
+ * @param {Object} props - Component props.
+ * @param {Object} props.initialFilters - The initial filter values.
+ * @param {string} [props.initialFilters.customerName] - The initial customer name filter.
+ * @param {string} [props.initialFilters.fromDate] - The initial "from" date filter (YYYY-MM-DD).
+ * @param {string} [props.initialFilters.toDate] - The initial "to" date filter (YYYY-MM-DD).
+ * @param {Function} props.onApply - Callback function invoked when the Apply button is clicked.
+ * @param {Function} props.onReset - Callback function invoked when the Reset button is clicked.
+ * @returns {JSX.Element} The rendered GlobalFilter component.
+ */
 const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
-  // Initialize state with the initial filters
+  // Initialize state with the initial filters passed from the parent.
   const [localFilters, setLocalFilters] = useState(initialFilters);
 
+  // Update local state if initialFilters prop changes.
   useEffect(() => {
     setLocalFilters(initialFilters);
   }, [initialFilters]);
 
-  // Handle change for any filter field by updating the filter state
+  //Updates a specific filter field in the localFilters state.
   const handleChange = (field, value) => {
     setLocalFilters((prev) => ({ ...prev, [field]: value }));
   };
 
-  // When the Apply button is clicked, pass the current localFilters back to the parent.
+  //Invokes the onApply with the current localFilters.
   const handleApply = () => {
     onApply(localFilters);
   };
 
-  // When the Reset button is clicked, reset localFilters to empty values, and pass it to the parent by calling onReset.
+  //Resets the filter values to empty strings and invokes the onReset.
   const handleReset = () => {
     const resetFilters = { customerName: "", fromDate: "", toDate: "" };
     setLocalFilters(resetFilters);
@@ -43,6 +58,7 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
         borderBottom: "1px solid #ccc",
       }}
     >
+      {/* Filter inputs container */}
       <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
         <TextField
           label="Customer Name"
@@ -55,6 +71,7 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
           label="From Date"
           variant="outlined"
           type="date"
+          // Use slotProps to ensure the label remains shrunk above the input
           slotProps={{ inputLabel: { shrink: true } }}
           value={localFilters.fromDate || ""}
           onChange={(e) => handleChange("fromDate", e.target.value)}
@@ -68,8 +85,13 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
           onChange={(e) => handleChange("toDate", e.target.value)}
         />
       </Box>
+      {/* Action buttons container */}
       <Box sx={{ display: "flex", gap: 1 }}>
-        <Button variant="contained" sx={{ backgroundColor: "#0a8292" }} onClick={handleApply}>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: "#0a8292" }}
+          onClick={handleApply}
+        >
           Apply
         </Button>
         <Button variant="outlined" color="secondary" onClick={handleReset}>
@@ -88,6 +110,10 @@ GlobalFilter.propTypes = {
   }),
   onApply: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
+};
+
+GlobalFilter.defaultProps = {
+  initialFilters: { customerName: "", fromDate: "", toDate: "" },
 };
 
 export default GlobalFilter;

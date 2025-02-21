@@ -1,62 +1,73 @@
-/**
- * @file Home.js
- * @description Main container component that fetches transactions, manages global filter state, and renders the appropriate view (Transactions, MonthlyRewards, or TotalRewards) based on the current tab.
- */
-
 import React, { useState, useEffect } from "react";
 import Transactions from "../components/Transactions";
 import MonthlyRewards from "../components/MonthlyRewards";
 import TotalRewards from "../components/TotalRewards";
-import GlobalFilter from "../utils/GlobalFilter";
+import GlobalFilter from "../components/commonComponents/GlobalFilter";
 import { fetchTransactions } from "../services/transaction.service";
-import { CircularProgress, Box, Typography } from "@mui/material";
+import Loader from "../components/commonComponents/Loader";
+
+const formatDate = (date) => date.toISOString().split("T")[0];
+
+/**
+ * @file Home.js
+ * @description Main container component that fetches transactions, manages global filter state, and renders the appropriate view
+ * (Transactions, MonthlyRewards, or TotalRewards) based on the current tab.
+ * @component Home
+ * @param {Object} props - Component properties.
+ * @param {string} props.currentTab - The current tab to display ("transactions", "monthlyRewards", or "totalRewards").
+ * @returns {JSX.Element} The rendered Home component.
+ */
 
 const Home = ({ currentTab }) => {
-  // Global filter state for customer name and date range
+  // Compute default dates: 'toDate' is today, 'fromDate' is 4 months ago.
+  const today = new Date();
+  const fourMonthsAgo = new Date();
+  fourMonthsAgo.setMonth(fourMonthsAgo.getMonth() - 4);
+
+  // Global filter state for customer name and date range, initialized with default dates.
   const [globalFilters, setGlobalFilters] = useState({
     customerName: "",
-    fromDate: "",
-    toDate: "",
+    fromDate: formatDate(fourMonthsAgo),
+    toDate: formatDate(today),
   });
 
-  // Common filter configuration
+  // Common filter configuration mapping filter keys to transaction fields.
   const filterConfig = {
     customerName: { field: "customerName", op: "includes" },
     fromDate: { field: "purchaseDate", op: "gte" },
     toDate: { field: "purchaseDate", op: "lte" },
   };
 
-  // Handler to update global filters when the user clicks the Apply button
+  //Updates the global filter state when the Apply button is clicked.
   const handleApplyFilters = (filters) => {
     setGlobalFilters(filters);
   };
 
-  // Handler to reset global filters when the user clicks the Reset button
+  // Resets the global filter state when the Reset button is clicked.
   const handleResetFilters = (filters) => {
     setGlobalFilters(filters);
   };
 
-  // Local state to store fetched transactions along with loading and error states
+  // Local state to store fetched transactions and track loading and error states.
   const [state, setState] = useState({
     transactions: [],
     loading: true,
     error: null,
   });
 
-  // Fetch transactions data when the component mounts
+  // Fetch transactions data when the component mounts.
   useEffect(() => {
     fetchTransactions()
       .then((data) => {
+        console.log(data);
         setState({
           transactions: data,
-          loading: false,
           error: null,
         });
       })
       .catch((err) => {
         setState((prev) => ({
           ...prev,
-          loading: false,
           error: err.message,
         }));
       })
@@ -68,43 +79,7 @@ const Home = ({ currentTab }) => {
       });
   }, []);
 
-  // If data is loading, display a loading spinner
-  if (state.loading) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  // If there is an error, display an error message
-  if (state.error) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-      >
-        <Typography variant="h6" color="error">
-          Error: {state.error}
-        </Typography>
-      </Box>
-    );
-  }
-
-  // Choose the view to render based on the currentTab prop.
+  // Renders the appropriate view based on the currentTab prop.
   const renderView = () => {
     switch (currentTab) {
       case "transactions":
@@ -137,14 +112,20 @@ const Home = ({ currentTab }) => {
   };
 
   return (
-    <div>
-      <GlobalFilter
-        initialFilters={globalFilters}
-        onApply={handleApplyFilters}
-        onReset={handleResetFilters}
-      />
-      {renderView()}
-    </div>
+    <>
+      {state.loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <GlobalFilter
+            initialFilters={globalFilters}
+            onApply={handleApplyFilters}
+            onReset={handleResetFilters}
+          />
+          {renderView()}
+        </div>
+      )}
+    </>
   );
 };
 

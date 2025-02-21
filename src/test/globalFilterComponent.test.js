@@ -12,7 +12,7 @@ describe("GlobalFilter Component", () => {
     onReset.mockClear();
   });
 
-  test("renders filter input fields and buttons", () => {
+  it("renders filter input fields and buttons", () => {
     render(
       <GlobalFilter
         initialFilters={initialFilters}
@@ -27,7 +27,7 @@ describe("GlobalFilter Component", () => {
     expect(screen.getByRole("button", { name: /Reset/i })).toBeInTheDocument();
   });
 
-  test("calls onApply with updated filters when Apply button is clicked", () => {
+  it("calls onApply with updated filters when Apply button is clicked", () => {
     render(
       <GlobalFilter
         initialFilters={initialFilters}
@@ -49,7 +49,7 @@ describe("GlobalFilter Component", () => {
     });
   });
 
-  test("calls onReset with empty filters when Reset button is clicked", () => {
+  it("calls onReset with empty filters when Reset button is clicked", () => {
     render(
       <GlobalFilter
         initialFilters={{

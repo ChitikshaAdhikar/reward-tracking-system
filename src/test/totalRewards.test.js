@@ -11,19 +11,19 @@ describe("TotalRewards Component", () => {
   ];
   const globalFilters = { customerName: "", fromDate: "", toDate: "" };
 
-  test("renders table columns for total rewards", () => {
+  it("renders table columns for total rewards", () => {
     render(<TotalRewards transactions={transactions} globalFilters={globalFilters} />);
     expect(screen.getByText(/Customer Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Total Reward Points/i)).toBeInTheDocument();
   });
 
-  test("renders no rows when transactions array is empty", () => {
+  it("renders no rows when transactions array is empty", () => {
     render(<TotalRewards transactions={[]} globalFilters={globalFilters} />);
     expect(screen.queryAllByTestId("table-row")).toHaveLength(0);
   });
 
   // When global filters exclude all transactions.
-  test("renders no rows when filters exclude all transactions", () => {
+  it("renders no rows when filters exclude all transactions", () => {
     const filters = { customerName: "Rajesh", fromDate: "", toDate: "" };
     render(<TotalRewards transactions={transactions} globalFilters={filters} />);
     expect(screen.queryAllByTestId("table-row")).toHaveLength(0);

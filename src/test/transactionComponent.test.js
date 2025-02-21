@@ -11,7 +11,7 @@ describe("Transactions Component", () => {
   ];
   const globalFilters = { customerName: "", fromDate: "", toDate: "" };
 
-  test("renders table headers", () => {
+  it("renders table headers", () => {
     render(<Transactions transactions={transactions} globalFilters={globalFilters} />);
     expect(screen.getByText(/Transaction Id/i)).toBeInTheDocument();
     expect(screen.getByText(/Customer Name/i)).toBeInTheDocument();
@@ -20,13 +20,13 @@ describe("Transactions Component", () => {
     expect(screen.getByText(/Price/i)).toBeInTheDocument();
     expect(screen.getByText(/Reward Points/i)).toBeInTheDocument();
   });
-   test("renders no rows when transactions array is empty", () => {
+   it("renders no rows when transactions array is empty", () => {
       render(<Transactions transactions={[]} globalFilters={globalFilters} />);
       expect(screen.queryAllByTestId("table-row")).toHaveLength(0);
     });
   
     // When global filters exclude all transactions.
-    test("renders no rows when filters exclude all transactions", () => {
+    it("renders no rows when filters exclude all transactions", () => {
       const filters = { customerName: "Rajesh", fromDate: "", toDate: "" };
       render(<Transactions transactions={transactions} globalFilters={filters} />);
       expect(screen.queryAllByTestId("table-row")).toHaveLength(0);

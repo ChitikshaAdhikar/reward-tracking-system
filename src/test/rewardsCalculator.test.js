@@ -6,28 +6,28 @@ import {
 } from "../utils/rewardsCalculator";
 
 describe("calculateRewardPoints", () => {
-  test("returns 0 if price <= 50", () => {
+  it("returns 0 if price <= 50", () => {
     expect(calculateRewardPoints(50)).toBe(0);
     expect(calculateRewardPoints(30)).toBe(0);
   });
 
-  test("returns price - 50 if price is between 50 and 100", () => {
+  it("returns price - 50 if price is between 50 and 100", () => {
     expect(calculateRewardPoints(75)).toBe(25);
     expect(calculateRewardPoints(100)).toBe(50);
   });
 
-  test("returns 50 plus twice the amount over 100 if price > 100", () => {
+  it("returns 50 plus twice the amount over 100 if price > 100", () => {
     // For price of 120: 50 + (120 - 100)*2 = 90
     expect(calculateRewardPoints(120)).toBe(90);
     // For price of 150: 50 + (150 - 100)*2 = 150
     expect(calculateRewardPoints(150)).toBe(150);
   });
 
-  test("return 0 if price is negative", () => {
+  it("return 0 if price is negative", () => {
     expect(calculateRewardPoints(-20)).toBe(0);
   });
 
-  test("return 0 if price is string", () => {
+  it("return 0 if price is string", () => {
     expect(isNaN(calculateRewardPoints("abc"))).toBe(true);
   });
 });
@@ -59,7 +59,7 @@ describe("getMonthlyRewards", () => {
       price: 200, // Reward = 250
     },
   ];
-  test("Sum up rewards per customer on a monthly basis", () => {
+  it("Sum up rewards per customer on a monthly basis", () => {
     // Expected output:
     // Joe in February: 90 + 30 + 250 = 370 reward points.
     // Chandler in February: 15 reward points.
@@ -86,11 +86,11 @@ describe("getMonthlyRewards", () => {
     expect(chandlerFeb.rewardPoints).toBe(15);
   });
 
-  test("returns an empty array if transactions is empty", () => {
+  it("returns an empty array if transactions is empty", () => {
     expect(getMonthlyRewards([])).toEqual([]);
   });
 
-  test("handles transactions with invalid dates", () => {
+  it("handles transactions with invalid dates", () => {
     const transactions = [
       {
         customerId: 1,
@@ -104,13 +104,13 @@ describe("getMonthlyRewards", () => {
     expect(monthlyRewards).toHaveLength(0);
   });
 
-  test("aggregates monthly rewards without filters", () => {
+  it("aggregates monthly rewards without filters", () => {
     const result = getMonthlyRewards(transactions);
     // Expect two groups: Joe and Chandler in feb.
     expect(result).toHaveLength(2);
   });
 
-  test("applies filters before aggregating", () => {
+  it("applies filters before aggregating", () => {
     const filters = {
       customerName: "Joe",
       fromDate: "2023-02-09",
@@ -151,7 +151,7 @@ describe("getTotalRewards", () => {
     },
   ];
 
-  test("Sum up total rewards per customer", () => {
+  it("Sum up total rewards per customer", () => {
     // Expected output:
     // Ross: 90 + 30 + 150 = 270 reward points.
     // Monica: 250 reward points.
@@ -171,11 +171,11 @@ describe("getTotalRewards", () => {
     expect(monicaTotal.rewardPoints).toBe(250);
   });
 
-  test("return empty array if transaction is empty", () => {
+  it("return empty array if transaction is empty", () => {
     expect(getTotalRewards([])).toEqual([]);
   });
 
-  test("handles transactions with string price", () => {
+  it("handles transactions with string price", () => {
     const transactions = [
       {
         customerId: 1,
@@ -188,7 +188,7 @@ describe("getTotalRewards", () => {
     expect(totalRewards).toHaveLength(1);
     expect(isNaN(totalRewards[0].rewardPoints)).toBe(true);
   });
-  test("aggregates total rewards without filters", () => {
+  it("aggregates total rewards without filters", () => {
     const result = getTotalRewards(transactions);
     expect(result).toHaveLength(2);
     const monica = result.find((r) => r.customerName === "Monica");
@@ -197,7 +197,7 @@ describe("getTotalRewards", () => {
     expect(ross.rewardPoints).toBeGreaterThan(0);
   });
 
-  test("applies filters before aggregating totals", () => {
+  it("applies filters before aggregating totals", () => {
     const filters = {
       customerName: "Monica",
       fromDate: "2023-01-09",
@@ -226,7 +226,7 @@ describe("getFilteredTransactions", () => {
     },
   ];
 
-  test("filters by customerName", () => {
+  it("filters by customerName", () => {
     const filters = { customerName: "Leonard", fromDate: "", toDate: "" };
     const result = getFilteredTransactions(transactions, filters);
     expect(result).toHaveLength(1);
@@ -235,7 +235,7 @@ describe("getFilteredTransactions", () => {
     });
   });
 
-  test("filters by date range", () => {
+  it("filters by date range", () => {
     const filters = {
       customerName: "",
       fromDate: "2023-02-01",
@@ -246,7 +246,7 @@ describe("getFilteredTransactions", () => {
     expect(result[0].id).toBe(2);
   });
 
-  test("filters by customerName and date range", () => {
+  it("filters by customerName and date range", () => {
     const filters = {
       customerName: "Rajesh",
       fromDate: "2023-02-09",

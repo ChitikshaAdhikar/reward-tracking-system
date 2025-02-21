@@ -66,7 +66,7 @@ export const getFilteredTransactions = (transactions, globalFilters) => {
     }));
   } catch (error) {
     console.error("Error in getFilteredTransactions:", error);
-     return [];
+    return [];
   }
 };
 
@@ -86,6 +86,22 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
       globalFilters
     );
 
+    // Define an array of month names.
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
     // Reduce filtered transactions into monthly rewards.
     const monthlyRewards = filteredTransactions.reduce((acc, transaction) => {
       const date = new Date(transaction.purchaseDate);
@@ -96,11 +112,11 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
         );
         return acc;
       }
-      // Extract month and year from the transaction date.
-      const month = date.getMonth() + 1;
+      // Extract month (as a string) and year from the transaction date.
+      const month = monthNames[date.getMonth()];
       const year = date.getFullYear();
 
-      // Create key for grouping by customer, year and month.
+      // Create key for grouping by customer, year, and month.
       const key = `${transaction.customerId}_${year}_${month}`;
       // Use the already computed rewardPoints from getFilteredTransactions.
       const points = transaction.rewardPoints;
@@ -119,10 +135,10 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
       return acc;
     }, {});
 
-    //Convert the aggregated rewards object to an array and sort by customerId, year, and month.
+    //Convert the aggregated rewards object to an array and sort by customerId, year, and month (using the index in monthNames).
     return Object.values(monthlyRewards).sort(
-      (a, b) =>
-        a.customerId - b.customerId || a.year - b.year || a.month - b.month
+      (a, b) => 
+      a.customerId - b.customerId || a.year - b.year || monthNames.indexOf(a.month) - monthNames.indexOf(b.month)
     );
   } catch (error) {
     console.error("Error in getMonthlyRewards:", error);

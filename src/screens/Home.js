@@ -68,7 +68,8 @@ const Home = ({ currentTab }) => {
         setState((prev) => ({
           ...prev,
           error: err.message,
-        }));
+        })); 
+        throw new Error(err) 
       })
       .finally(() => {
         setState((prev) => ({

@@ -21,7 +21,7 @@ import { getFilteredTransactions } from "../utils/rewardsCalculator";
 const Transactions = ({ transactions, globalFilters }) => {
   // State for sorting
   const [sorting, setSorting] = useState({
-    column: "customerId",
+    column: "transactionId",
     order: "asc",
   });
 
@@ -37,7 +37,7 @@ const Transactions = ({ transactions, globalFilters }) => {
       return getFilteredTransactions(transactions, globalFilters);
     } catch (err) {
       console.log("Error in Transactions:" + err);
-      return [];
+      throw new Error(err);
     }
   }, [transactions, globalFilters]);
 

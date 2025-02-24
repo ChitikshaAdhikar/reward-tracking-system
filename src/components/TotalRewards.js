@@ -33,7 +33,7 @@ const TotalRewards = ({ transactions, globalFilters }) => {
       return getTotalRewards(transactions, globalFilters);
     } catch (error) {
       console.error("Error computing total rewards:", error);
-      return [];
+      throw new Error(error);
     }
   }, [transactions, globalFilters]);
 

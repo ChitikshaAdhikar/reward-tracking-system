@@ -66,7 +66,7 @@ export const getFilteredTransactions = (transactions, globalFilters) => {
     }));
   } catch (error) {
     console.error("Error in getFilteredTransactions:", error);
-    return [];
+    throw new Error(error);
   }
 };
 
@@ -137,12 +137,14 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
 
     //Convert the aggregated rewards object to an array and sort by customerId, year, and month (using the index in monthNames).
     return Object.values(monthlyRewards).sort(
-      (a, b) => 
-      a.customerId - b.customerId || a.year - b.year || monthNames.indexOf(a.month) - monthNames.indexOf(b.month)
+      (a, b) =>
+        a.customerId - b.customerId ||
+        a.year - b.year ||
+        monthNames.indexOf(a.month) - monthNames.indexOf(b.month)
     );
   } catch (error) {
     console.error("Error in getMonthlyRewards:", error);
-    return [];
+    throw new Error(error);
   }
 };
 
@@ -182,6 +184,6 @@ export const getTotalRewards = (transactions, globalFilters = {}) => {
     );
   } catch (error) {
     console.error("Error in getTotalRewards:", error);
-    return [];
+    throw new Error(error);
   }
 };

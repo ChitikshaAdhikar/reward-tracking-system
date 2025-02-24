@@ -16,8 +16,8 @@ import { Box, TextField, Button } from "@mui/material";
  * @param {Object} props - Component props.
  * @param {Object} props.initialFilters - The initial filter values.
  * @param {string} [props.initialFilters.customerName] - The initial customer name filter.
- * @param {string} [props.initialFilters.fromDate] - The initial "from" date filter (YYYY-MM-DD).
- * @param {string} [props.initialFilters.toDate] - The initial "to" date filter (YYYY-MM-DD).
+ * @param {string} [props.initialFilters.fromDate] - The initial "from" date filter.
+ * @param {string} [props.initialFilters.toDate] - The initial "to" date filter.
  * @param {Function} props.onApply - Callback function invoked when the Apply button is clicked.
  * @param {Function} props.onReset - Callback function invoked when the Reset button is clicked.
  * @returns {JSX.Element} The rendered GlobalFilter component.
@@ -71,7 +71,7 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
           label="From Date"
           variant="outlined"
           type="date"
-          // Use slotProps to ensure the label remains shrunk above the input
+          // Used slotProps to ensure the label remains shrunk above the input
           slotProps={{ inputLabel: { shrink: true } }}
           value={localFilters.fromDate || ""}
           onChange={(e) => handleChange("fromDate", e.target.value)}

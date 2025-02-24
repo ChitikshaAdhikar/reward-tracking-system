@@ -20,9 +20,9 @@ import { getMonthlyRewards } from "../utils/rewardsCalculator";
  */
 
 const MonthlyRewards = ({ transactions, globalFilters }) => {
-  // Local state to handle sorting 
+  // Local state to handle sorting
   const [sorting, setSorting] = useState({
-    column: "customerName",
+    column: "customerId",
     order: "asc",
   });
 
@@ -35,7 +35,7 @@ const MonthlyRewards = ({ transactions, globalFilters }) => {
       return getMonthlyRewards(transactions, globalFilters);
     } catch (error) {
       console.error("Error computing monthly rewards:", error);
-      return [];
+      throw new Error(error);
     }
   }, [transactions, globalFilters]);
 
@@ -51,7 +51,7 @@ const MonthlyRewards = ({ transactions, globalFilters }) => {
     [sortedData, pagination]
   );
 
-  // Handler function for sorting 
+  // Handler function for sorting
   const handleSort = (column) => {
     setSorting((prev) => ({
       column,

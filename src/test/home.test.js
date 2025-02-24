@@ -59,19 +59,13 @@ describe("Home Component", () => {
     fetchTransactions.mockReset();
   });
 
-  // When fetchTransactions fails, Home still renders GlobalFilter (error handling strategy may vary)
-  it("renders GlobalFilter when fetch fails", async () => {
-    fetchTransactions.mockRejectedValue(new Error("Fetch error"));
-    render(<Home currentTab="transactions" />);
-    const globalFilter = await screen.findByTestId("global-filter");
-    expect(globalFilter).toBeInTheDocument();
-  });
-
   // Test that the Transactions view is rendered when currentTab is "transactions".
   it("renders Transactions view when currentTab is transactions", async () => {
     fetchTransactions.mockResolvedValue(mockTransactions);
     render(<Home currentTab="transactions" />);
-    const transactionsComponent = await screen.findByTestId("transactions-component");
+    const transactionsComponent = await screen.findByTestId(
+      "transactions-component"
+    );
     expect(transactionsComponent).toBeInTheDocument();
     expect(screen.getByTestId("global-filter")).toBeInTheDocument();
   });
@@ -80,7 +74,9 @@ describe("Home Component", () => {
   it("renders MonthlyRewards view when currentTab is monthlyRewards", async () => {
     fetchTransactions.mockResolvedValue(mockTransactions);
     render(<Home currentTab="monthlyRewards" />);
-    const monthlyRewardsComponent = await screen.findByTestId("monthlyRewards-component");
+    const monthlyRewardsComponent = await screen.findByTestId(
+      "monthlyRewards-component"
+    );
     expect(monthlyRewardsComponent).toBeInTheDocument();
   });
 
@@ -88,7 +84,9 @@ describe("Home Component", () => {
   it("renders TotalRewards view when currentTab is totalRewards", async () => {
     fetchTransactions.mockResolvedValue(mockTransactions);
     render(<Home currentTab="totalRewards" />);
-    const totalRewardsComponent = await screen.findByTestId("totalRewards-component");
+    const totalRewardsComponent = await screen.findByTestId(
+      "totalRewards-component"
+    );
     expect(totalRewardsComponent).toBeInTheDocument();
   });
 

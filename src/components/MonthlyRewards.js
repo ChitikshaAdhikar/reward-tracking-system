@@ -22,8 +22,8 @@ import { getMonthlyRewards } from "../utils/rewardsCalculator";
 const MonthlyRewards = ({ transactions, globalFilters }) => {
   // Local state to handle sorting
   const [sorting, setSorting] = useState({
-    column: "customerId",
-    order: "asc",
+    column: "year",
+    order: "desc",
   });
 
   // Local state to manage pagination with default values.

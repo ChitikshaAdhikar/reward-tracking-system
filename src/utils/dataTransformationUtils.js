@@ -11,15 +11,33 @@
  * @returns {Array} The sorted data array.
  */
 export const applySorting = (data, sorting) => {
-  if (!data || data.length === 0) return [];
-  const sortedData = [...data].sort((a, b) => {
-    let valA = a[sorting.column];
-    let valB = b[sorting.column];
+  const clonedData = JSON.parse(JSON.stringify(data));
+  if (!clonedData || clonedData.length === 0) return [];
+  const sortedData = clonedData.sort((a, b) => {
+    let aValue = a[sorting.column];
+    let bValue = b[sorting.column];
 
-    if (typeof valA === "string") valA = valA.toLowerCase().trim();
-    if (typeof valB === "string") valB = valB.toLowerCase().trim();
-    if (valA < valB) return sorting.order === "asc" ? -1 : 1;
-    if (valA > valB) return sorting.order === "asc" ? 1 : -1;
+    // Trying to interpret both values as dates.
+    const aDate = new Date(aValue);
+    const bDate = new Date(bValue);
+    const aTime = aDate.getTime();
+    const bTime = bDate.getTime();
+
+    // If both values are valid dates compare them based on converted timestamps.
+    if (!isNaN(aTime) && !isNaN(bTime)) {
+      aValue = aTime;
+      bValue = bTime;
+    }
+    //If both values are strings use localeCompare.
+    else if (typeof aValue === "string" && typeof bValue === "string") {
+      return sorting.order === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    }
+
+    // For numbers or other types, use standard comparison
+    if (aValue < bValue) return sorting.order === "asc" ? -1 : 1;
+    if (aValue > bValue) return sorting.order === "asc" ? 1 : -1;
     return 0;
   });
   return sortedData;

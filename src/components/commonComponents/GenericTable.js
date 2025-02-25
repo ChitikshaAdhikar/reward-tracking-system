@@ -50,6 +50,12 @@ const GenericTable = ({
       onSort(columnId);
     }
   };
+  const getTextAlign = (columnId) => {
+    // Right Aligning the trasaction price and rewards.
+    return columnId === "rewardPoints" || columnId === "price"
+      ? "right"
+      : "left";
+  };
 
   return (
     <>
@@ -81,7 +87,10 @@ const GenericTable = ({
             {data.map((row, idx) => (
               <TableRow key={rowKey ? rowKey(row, idx) : idx}>
                 {columns.map((col) => (
-                  <TableCell key={col.id}>
+                  <TableCell
+                    key={col.id}
+                    style={{ textAlign: getTextAlign(col.id) }}
+                  >
                     {col.render ? col.render(row) : row[col.id]}
                   </TableCell>
                 ))}

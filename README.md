@@ -33,8 +33,7 @@ A React-based system that calculates and displays reward points earned by custom
 
 A overview of the project's folder structure:
 
-reward-tracking-system
-├── reward-tracking-system/
+|──reward-tracking-system/
 ├── ├── public/
 ├── │   ├── index.html
 ├── ├── src/
@@ -67,14 +66,13 @@ reward-tracking-system
 
 ### Screenshot
 
-![Transaction Screenshot](!(./public/screenshots/image-9.png))
-![Transaction Screenshot with Filter](!(./public/screenshots/image-4.png))
-![Transaction Screenshot Errored ](!(./public/screenshots/image-10.png))
-![Mothly Rewards Screenshot](!(./public/screenshots/image-8.png))
-![Mothly Rewards Screenshot with Filter](!(./public/screenshots/image-5.png))
-![Total Rewards Screenshot](!(./public/screenshots/image-7.png))
-![Total Rewards Screenshot with Filter](!(./public/screenshots/image-6.png))
-![Home page error screenshot](!(./public/screenshots/image-11.png))
+![Transaction Screenshot](![alt text](./public/screenshots/image-9.png))
+![Transaction Screenshot with Filter](![alt text](./public/screenshots/image-4.png))
+![Mothly Rewards Screenshot with Filter](![alt text](./public/screenshots/image-8.png))
+![Mothly Rewards Screenshot](![alt text](./public/screenshots/image-5.png))
+![Total Rewards Screenshot](![alt text](./public/screenshots/image-7.png))
+![Total Rewards Screenshot with Filter](![alt text](./public/screenshots/image-6.png))
+![Home page error screenshot](![alt text](./public/screenshots/image-11.png))
 
 ### Installation
 

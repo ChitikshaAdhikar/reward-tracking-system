@@ -19,10 +19,10 @@ const formatDate = (date) => date.toISOString().split("T")[0];
  */
 
 const Home = ({ currentTab }) => {
-  // Compute default dates: 'toDate' is today, 'fromDate' is 4 months ago.
+  // Compute default dates: 'toDate' is today, 'fromDate' is 3 months ago.
   const today = new Date();
   const fourMonthsAgo = new Date();
-  fourMonthsAgo.setMonth(fourMonthsAgo.getMonth() - 4);
+  fourMonthsAgo.setMonth(fourMonthsAgo.getMonth() - 3);
 
   // Global filter state for customer name and date range, initialized with default dates.
   const [globalFilters, setGlobalFilters] = useState({
@@ -69,7 +69,7 @@ const Home = ({ currentTab }) => {
           ...prev,
           error: err.message,
         })); 
-        throw new Error(err) 
+
       })
       .finally(() => {
         setState((prev) => ({

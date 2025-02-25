@@ -5,7 +5,7 @@ import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
-import { getFilteredTransactions } from "../utils/rewardsCalculator";
+import { getTransactionsWithRewards } from "../utils/rewardsCalculator";
 
 /**
  * @file Transactions.js
@@ -21,8 +21,8 @@ import { getFilteredTransactions } from "../utils/rewardsCalculator";
 const Transactions = ({ transactions, globalFilters }) => {
   // State for sorting
   const [sorting, setSorting] = useState({
-    column: "transactionId",
-    order: "asc",
+    column: "purchaseDate",
+    order: "desc",
   });
 
   // State for pagination
@@ -31,10 +31,10 @@ const Transactions = ({ transactions, globalFilters }) => {
     rowsPerPage: 5,
   });
 
-  // getFilteredTransactions applies the filtering logic based on globalFilters.
-  const filteredTransactions = useMemo(() => {
-    try {
-      return getFilteredTransactions(transactions, globalFilters);
+  // getTransactionsWithRewards fetch the filtered data with rewards attached.
+  const filteredTransactions= useMemo(() => {
+    try { 
+      return getTransactionsWithRewards(transactions, globalFilters);
     } catch (err) {
       console.log("Error in Transactions:" + err);
       throw new Error(err);

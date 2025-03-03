@@ -19,5 +19,6 @@ export const fetchTransactions = async () => {
     return data.transactions;
   } catch (error) {
     logger.error(error);
+    return [];
   }
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const useTableControls = (
   initialSort = { column: "customerName", order: "asc" },
@@ -7,16 +7,16 @@ const useTableControls = (
   const [sorting, setSorting] = useState(initialSort);
   const [pagination, setPagination] = useState(initialPagination);
 
-  const handleSort = (column) => {
+  const handleSort = useCallback((column) => {
     setSorting((prev) => ({
       column,
       order: prev.column === column && prev.order === "asc" ? "desc" : "asc",
     }));
-  };
+  }, []);
 
-  const handleChangePage = (_event, newPage) => {
+  const handleChangePage = useCallback((_event, newPage) => {
     setPagination((prev) => ({ ...prev, page: newPage }));
-  };
+  }, []);
 
   return { sorting, pagination, handleSort, handleChangePage };
 };

@@ -70,7 +70,7 @@ export const attachedRewardPoints = (transactions) => {
     }));
   } catch (error) {
     logger.error("Error in attachedRewardPoints:", error);
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -93,7 +93,7 @@ export const getTransactionsWithRewards = (
     return attachedRewardPoints(filteredTransactions);
   } catch (error) {
     logger.error("Error in getTransactionsWithRewards:", error);
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -182,7 +182,7 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
     );
   } catch (error) {
     logger.error("Error in getMonthlyRewards:", error);
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -222,6 +222,6 @@ export const getTotalRewards = (transactions, globalFilters = {}) => {
     );
   } catch (error) {
     logger.error("Error in getTotalRewards:", error);
-    throw new Error(error);
+    throw error;
   }
 };

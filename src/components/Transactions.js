@@ -37,7 +37,7 @@ const Transactions = ({ transactions, globalFilters }) => {
       return getTransactionsWithRewards(transactions, globalFilters);
     } catch (err) {
       logger.error("Error in Transactions:" + err);
-      throw Error(err);
+      throw err;
     }
   }, [transactions, globalFilters]);
 
@@ -52,7 +52,12 @@ const Transactions = ({ transactions, globalFilters }) => {
   );
 
   const columns = [
-    { id: "transactionId", label: "Transaction Id", sortable: true },
+    {
+      id: "transactionId",
+      label: "Transaction ID",
+      sortable: true,
+      render: (row) => `${row.transactionId.toUpperCase()}`,
+    },
     { id: "customerName", label: "Customer Name", sortable: true },
     {
       id: "purchaseDate",
@@ -65,7 +70,7 @@ const Transactions = ({ transactions, globalFilters }) => {
       id: "price",
       label: "$ Price",
       sortable: true,
-      render: (row) => `$ ${Number(row.price).toFixed(2)}`,
+      render: (row) => `$${Number(row.price).toFixed(2)}`,
     },
     { id: "rewardPoints", label: "Reward Points", sortable: true },
   ];

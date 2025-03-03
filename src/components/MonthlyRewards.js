@@ -20,9 +20,9 @@ import useTableControls from "../hooks/useTableControls";
  * @param {Object} props.globalFilters - Global filters (customerName, fromDate, toDate) to apply on transactions.
  * @returns {JSX.Element} The rendered MonthlyRewards table.
  */
- const logger = new Logger("error")
+const logger = new Logger("error");
 const MonthlyRewards = ({ transactions, globalFilters }) => {
-  const { sorting, pagination, handleSort, handleChangePage } =
+  const { pagination, sorting, handleSort, handleChangePage } =
     useTableControls(
       {
         column: "year",
@@ -37,7 +37,7 @@ const MonthlyRewards = ({ transactions, globalFilters }) => {
       return getMonthlyRewards(transactions, globalFilters);
     } catch (error) {
       logger.error("Error computing monthly rewards:", error);
-      throw Error(error);
+      throw error;
     }
   }, [transactions, globalFilters]);
 
@@ -52,7 +52,12 @@ const MonthlyRewards = ({ transactions, globalFilters }) => {
   );
 
   const columns = [
-    { id: "customerId", label: "Customer Id", sortable: true },
+    {
+      id: "customerId",
+      label: "Customer ID",
+      sortable: true,
+      render: (row) => `${row.customerId.toUpperCase()}`,
+    },
     { id: "customerName", label: "Customer Name", sortable: true },
     { id: "month", label: "Month", sortable: true },
     { id: "year", label: "Year", sortable: true },

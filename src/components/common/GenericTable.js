@@ -56,47 +56,48 @@ const GenericTable = ({
   };
 
   return (
-    <>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead style={{ backgroundColor: "#0a8292" }}>
-            <TableRow>
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead style={{ backgroundColor: "#0a8292" }}>
+          <TableRow>
+            {columns.map((col) => (
+              <TableCell
+                key={col.id}
+                style={{ color: "white", textAlign: getTextAlign(col.id) }}
+              >
+                {col.sortable ? (
+                  <TableSortLabel
+                    active={sorting?.column === col.id}
+                    direction={
+                      sorting?.column === col.id ? sorting.order : "asc"
+                    }
+                    onClick={() => handleSort(col.id)}
+                    sx ={{ color: "white !important" , ".MuiTableSortLabel-icon" :{"color" : "white !important"}}}
+                  >
+                    {col.label}
+                  </TableSortLabel>
+                ) : (
+                  col.label
+                )}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row, idx) => (
+            <TableRow key={rowKey ? rowKey(row, idx) : idx}>
               {columns.map((col) => (
-                <TableCell key={col.id} style={{ color: "white" }}>
-                  {col.sortable ? (
-                    <TableSortLabel
-                      active={sorting?.column === col.id}
-                      direction={
-                        sorting?.column === col.id ? sorting.order : "asc"
-                      }
-                      onClick={() => handleSort(col.id)}
-                      style={{ color: "white" }}
-                    >
-                      {col.label}
-                    </TableSortLabel>
-                  ) : (
-                    col.label
-                  )}
+                <TableCell
+                  key={col.id}
+                  style={{ textAlign: getTextAlign(col.id) }}
+                >
+                  {col.render ? col.render(row) : row[col.id]}
                 </TableCell>
               ))}
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, idx) => (
-              <TableRow key={rowKey ? rowKey(row, idx) : idx}>
-                {columns.map((col) => (
-                  <TableCell
-                    key={col.id}
-                    style={{ textAlign: getTextAlign(col.id) }}
-                  >
-                    {col.render ? col.render(row) : row[col.id]}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          ))}
+        </TableBody>
+      </Table>
       {pagination && (
         <TablePagination
           component="div"
@@ -110,7 +111,7 @@ const GenericTable = ({
           }
         />
       )}
-    </>
+    </TableContainer>
   );
 };
 

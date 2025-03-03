@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import GenericTable from "./common/GenericTable";
 import {
@@ -36,7 +36,7 @@ const TotalRewards = ({ transactions, globalFilters }) => {
       return getTotalRewards(transactions, globalFilters);
     } catch (error) {
       logger.error("Error computing total rewards:", error);
-      throw Error(error);
+      throw error;
     }
   }, [transactions, globalFilters]);
 

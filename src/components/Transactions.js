@@ -56,7 +56,10 @@ const Transactions = ({ transactions, globalFilters }) => {
       id: "transactionId",
       label: "Transaction ID",
       sortable: true,
-      render: (row) => `${row.transactionId.toUpperCase()}`,
+      render: (row) =>
+        row.transactionId != null
+          ? String(row.transactionId).toUpperCase()
+          : "",
     },
     { id: "customerName", label: "Customer Name", sortable: true },
     {

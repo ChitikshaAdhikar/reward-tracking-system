@@ -38,27 +38,30 @@ A overview of the project's folder structure:
 ├── │   ├── index.html
 ├── ├── src/
 ├── │   ├── components/
-├── │   │   ├── commonComponents/
+├── │   │   ├── common/
 ├── │   │   │   ├── ErrorFallback.js        
 ├── │   │   │   ├── GlobalFilter.js         
 ├── │   │   │   └── Loader.js               
 ├── │   │   ├── NavigationHeader.js         
 ├── │   │   ├── Transactions.js             
 ├── │   │   ├── MonthlyRewards.js           
-├── │   │   └── TotalRewards.js             
+├── │   │   └── TotalRewards.js  
+├── │   ├── hooks/
+├── │   │   ├── useTableControl.js            
 ├── │   ├── screens/
 ├── │   │   └── Home.js                     
 ├── │   ├── services/
-├── │   │   └── transaction.service.js      
+├── │   │   └── fetchTransaction.js      
 ├── │   ├── utils/
 ├── │   │   ├── dataTransformationUtils.js  
 ├── │   │   └── rewardsCalculator.js        
-├── │   ├── tests/                          
-├── │   │   ├── Home.test.js
-├── │   │   ├── GlobalFilter.test.js
-├── │   │   ├── Transactions.test.js
-├── │   │   ├── MonthlyRewards.test.js
-├── │   │   └── TotalRewards.test.js
+├── │   ├── tests/ 
+├── │   │   ├── app.test.js                         
+├── │   │   ├── home.test.js
+├── │   │   ├── globalFilter.test.js
+├── │   │   ├── transactions.test.js
+├── │   │   ├── monthlyRewards.test.js
+├── │   │   └── totalRewards.test.js
 ├── │   ├── App.js                          
 ├── │   └── index.js                        
 ├── ├── package.json

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Transactions from "../components/Transactions";
 import MonthlyRewards from "../components/MonthlyRewards";
 import TotalRewards from "../components/TotalRewards";
-import GlobalFilter from "../components/commonComponents/GlobalFilter";
-import { fetchTransactions } from "../services/transaction.service";
-import Loader from "../components/commonComponents/Loader";
+import GlobalFilter from "../components/common/GlobalFilter";
+import { fetchTransactions } from "../services/fetchTransactions";
+import Loader from "../components/common/Loader";
+import PropTypes from "prop-types";
 
 const formatDate = (date) => date.toISOString().split("T")[0];
 
@@ -24,67 +25,59 @@ const Home = ({ currentTab }) => {
   const fourMonthsAgo = new Date();
   fourMonthsAgo.setMonth(fourMonthsAgo.getMonth() - 3);
 
-  // Global filter state for customer name and date range, initialized with default dates.
   const [globalFilters, setGlobalFilters] = useState({
     customerName: "",
     fromDate: formatDate(fourMonthsAgo),
     toDate: formatDate(today),
   });
 
-  // Common filter configuration mapping filter keys to transaction fields.
+  const [transactionDetails, setTransactionDetails] = useState({
+    transactions: [],
+    loading: true,
+    error: null,
+  });
+
   const filterConfig = {
     customerName: { field: "customerName", op: "includes" },
     fromDate: { field: "purchaseDate", op: "gte" },
     toDate: { field: "purchaseDate", op: "lte" },
   };
 
-  //Updates the global filter state when the Apply button is clicked.
   const handleApplyFilters = (filters) => {
     setGlobalFilters(filters);
   };
 
-  // Resets the global filter state when the Reset button is clicked.
   const handleResetFilters = (filters) => {
     setGlobalFilters(filters);
   };
 
-  // Local state to store fetched transactions and track loading and error states.
-  const [state, setState] = useState({
-    transactions: [],
-    loading: true,
-    error: null,
-  });
-
-  // Fetch transactions data when the component mounts.
   useEffect(() => {
     fetchTransactions()
       .then((data) => {
-        setState({
+        setTransactionDetails({
           transactions: data,
           error: null,
         });
       })
       .catch((err) => {
-        setState((prev) => ({
+        setTransactionDetails((prev) => ({
           ...prev,
           error: err.message,
-        })); 
-
+        }));
       })
       .finally(() => {
-        setState((prev) => ({
+        setTransactionDetails((prev) => ({
           ...prev,
           loading: false,
         }));
       });
   }, []);
-  // Renders the appropriate view based on the currentTab prop.
   const renderView = () => {
     switch (currentTab) {
       case "transactions":
         return (
           <Transactions
-            transactions={state.transactions}
+            transactions={transactionDetails.transactions}
             globalFilters={globalFilters}
             filterConfig={filterConfig}
           />
@@ -92,7 +85,7 @@ const Home = ({ currentTab }) => {
       case "monthlyRewards":
         return (
           <MonthlyRewards
-            transactions={state.transactions}
+            transactions={transactionDetails.transactions}
             globalFilters={globalFilters}
             filterConfig={filterConfig}
           />
@@ -100,7 +93,7 @@ const Home = ({ currentTab }) => {
       case "totalRewards":
         return (
           <TotalRewards
-            transactions={state.transactions}
+            transactions={transactionDetails.transactions}
             globalFilters={globalFilters}
             filterConfig={filterConfig}
           />
@@ -111,8 +104,8 @@ const Home = ({ currentTab }) => {
   };
 
   return (
-    <>
-      {state.loading ? (
+    <div>
+      {transactionDetails.loading ? (
         <Loader />
       ) : (
         <div>
@@ -124,8 +117,11 @@ const Home = ({ currentTab }) => {
           {renderView()}
         </div>
       )}
-    </>
+    </div>
   );
+};
+Home.propTypes = {
+  currentTab: PropTypes.string,
 };
 
 export default Home;

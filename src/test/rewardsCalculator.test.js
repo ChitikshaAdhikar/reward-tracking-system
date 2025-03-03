@@ -28,7 +28,7 @@ describe("calculateRewardPoints", () => {
   });
 
   it("return 0 if price is string", () => {
-    expect(isNaN(calculateRewardPoints("abc"))).toBe(true);
+    expect(calculateRewardPoints("abc")).toBe(0);
   });
 });
 
@@ -186,7 +186,7 @@ describe("getTotalRewards", () => {
     ];
     const totalRewards = getTotalRewards(transactions);
     expect(totalRewards).toHaveLength(1);
-    expect(isNaN(totalRewards[0].rewardPoints)).toBe(true);
+    expect(totalRewards[0].rewardPoints).toBe(0);
   });
   it("aggregates total rewards without filters", () => {
     const result = getTotalRewards(transactions);

@@ -15,8 +15,7 @@ import Box from "@mui/material/Box";
  * @returns {JSX.Element} The rendered navigation header.
  */
 const NavigationHeader = ({ currentTab, onSelectTab }) => {
-  //Handles the tab change event.
-  const handleChange = (event, newTab) => {
+  const handleTabChange = (_event, newTab) => {
     onSelectTab(newTab);
   };
 
@@ -25,7 +24,7 @@ const NavigationHeader = ({ currentTab, onSelectTab }) => {
       <AppBar position="static" sx={{ bgcolor: "#0a8292" }}>
         <Tabs
           value={currentTab}
-          onChange={handleChange}
+          onChange={handleTabChange}
           variant={"scrollable"}
           scrollButtons={"auto"}
           indicatorColor="secondary"

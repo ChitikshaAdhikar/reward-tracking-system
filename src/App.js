@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavigationHeader from "./components/NavigationHeader";
 import Home from "./screens/Home";
-import ErrorFallback from "./components/commonComponents/ErrorFallback";
+import ErrorFallback from "./components/common/ErrorFallback";
 import { ErrorBoundary } from "react-error-boundary";
 
 /**
@@ -13,7 +13,6 @@ import { ErrorBoundary } from "react-error-boundary";
  * @returns {JSX.Element} The rendered App component.
  */
 const App = () => {
-  // State for tracking the currently selected tab. Default value is "transactions"
   const [currentTab, setCurrentTab] = useState("transactions");
 
   return (

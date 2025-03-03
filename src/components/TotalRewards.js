@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
-import GenericTable from "./commonComponents/GenericTable";
+import GenericTable from "./common/GenericTable";
 import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
 import { getTotalRewards } from "../utils/rewardsCalculator";
+import Logger from "../utils/logger";
+import useTableControls from "../hooks/useTableControls";
 
 /**
  * @file TotalRewards.js
@@ -17,52 +19,37 @@ import { getTotalRewards } from "../utils/rewardsCalculator";
  * @param {Object} props.globalFilters - Global filters (customerName, fromDate, toDate) to filter transactions.
  * @returns {JSX.Element} The rendered TotalRewards table.
  */
+const logger = new Logger("error");
 const TotalRewards = ({ transactions, globalFilters }) => {
-  // State to handle sorting
-  const [sorting, setSorting] = useState({
-    column: "customerName",
-    order: "asc",
-  });
-
-  // State for pagination
-  const [pagination, setPagination] = useState({ page: 0, rowsPerPage: 5 });
+  const { sorting, pagination, handleSort, handleChangePage } =
+    useTableControls(
+      {
+        column: "customerName",
+        order: "asc",
+      },
+      { page: 0, rowsPerPage: 5 }
+    );
 
   // The getTotalRewards function internally filters transactions based on globalFilters
   const filteredTotalRewards = useMemo(() => {
     try {
       return getTotalRewards(transactions, globalFilters);
     } catch (error) {
-      console.error("Error computing total rewards:", error);
-      throw new Error(error);
+      logger.error("Error computing total rewards:", error);
+      throw Error(error);
     }
   }, [transactions, globalFilters]);
 
-  // Apply sorting to the filtered total rewards
   const sortedData = useMemo(
     () => applySorting(filteredTotalRewards, sorting),
     [filteredTotalRewards, sorting]
   );
 
-  // Apply pagination to the sorted data
   const paginatedData = useMemo(
     () => applyPagination(sortedData, pagination.page, pagination.rowsPerPage),
     [sortedData, pagination]
   );
 
-  // Handler function for sorting
-  const handleSort = (column) => {
-    setSorting((prev) => ({
-      column,
-      order: prev.column === column && prev.order === "asc" ? "desc" : "asc",
-    }));
-  };
-
-  // Handler for pagination page changes
-  const handleChangePage = (event, newPage) => {
-    setPagination((prev) => ({ ...prev, page: newPage }));
-  };
-
-  // Define the columns for the table
   const columns = [
     { id: "customerName", label: "Customer Name", sortable: true },
     { id: "rewardPoints", label: "Total Reward Points", sortable: true },

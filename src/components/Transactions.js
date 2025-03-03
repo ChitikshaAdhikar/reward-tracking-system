@@ -1,11 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-import GenericTable from "./commonComponents/GenericTable";
+import GenericTable from "./common/GenericTable";
 import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
 import { getTransactionsWithRewards } from "../utils/rewardsCalculator";
+import Logger from "../utils/logger";
+import useTableControls from "../hooks/useTableControls";
 
 /**
  * @file Transactions.js
@@ -18,55 +20,37 @@ import { getTransactionsWithRewards } from "../utils/rewardsCalculator";
  * @returns {JSX.Element} The rendered Transactions component.
  */
 
+const logger = new Logger("error");
 const Transactions = ({ transactions, globalFilters }) => {
-  // State for sorting
-  const [sorting, setSorting] = useState({
-    column: "purchaseDate",
-    order: "desc",
-  });
-
-  // State for pagination
-  const [pagination, setPagination] = useState({
-    page: 0,
-    rowsPerPage: 5,
-  });
+  const { sorting, pagination, handleSort, handleChangePage } =
+    useTableControls(
+      {
+        column: "purchaseDate",
+        order: "desc",
+      },
+      { page: 0, rowsPerPage: 5 }
+    );
 
   // getTransactionsWithRewards fetch the filtered data with rewards attached.
-  const filteredTransactions= useMemo(() => {
-    try { 
+  const filteredTransactions = useMemo(() => {
+    try {
       return getTransactionsWithRewards(transactions, globalFilters);
     } catch (err) {
-      console.log("Error in Transactions:" + err);
-      throw new Error(err);
+      logger.error("Error in Transactions:" + err);
+      throw Error(err);
     }
   }, [transactions, globalFilters]);
 
-  // Apply sorting on the filtered transactions
   const sortedData = useMemo(
     () => applySorting(filteredTransactions, sorting),
     [filteredTransactions, sorting]
   );
 
-  // Apply pagination on the sorted data
   const paginatedData = useMemo(
     () => applyPagination(sortedData, pagination.page, pagination.rowsPerPage),
     [sortedData, pagination]
   );
 
-  // Function to handle sorting when a column header is clicked
-  const handleSort = (column) => {
-    setSorting((prev) => ({
-      column,
-      order: prev.column === column && prev.order === "asc" ? "desc" : "asc",
-    }));
-  };
-
-  // Function to handle pagination page changes
-  const handleChangePage = (event, newPage) => {
-    setPagination((prev) => ({ ...prev, page: newPage }));
-  };
-
-  // Define table columns and labels
   const columns = [
     { id: "transactionId", label: "Transaction Id", sortable: true },
     { id: "customerName", label: "Customer Name", sortable: true },
@@ -99,7 +83,7 @@ const Transactions = ({ transactions, globalFilters }) => {
           rowsPerPage: pagination.rowsPerPage,
           onPageChange: handleChangePage,
         }}
-        rowKey={(row, idx) => row.transactionId}
+        rowKey={(row) => row.transactionId}
       />
     </div>
   );

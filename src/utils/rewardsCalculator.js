@@ -3,6 +3,7 @@
  * @description Contains functions for calculating reward points and aggregating rewards.
  */
 
+import Logger from "../utils/logger";
 /**
  * @function calculateRewardPoints
  * @description Calculates reward points based on the transaction price.
@@ -13,7 +14,12 @@
  * @param {number} price  The transaction price.
  * @returns {number} The calculated reward points.
  */
+
+const logger = new Logger("error");
 export const calculateRewardPoints = (price) => {
+  // Return 0 if the price is not a valid number.
+  if (isNaN(price)) return 0;
+
   // Floor the price to ignore fractional dollars.
   const amount = Math.floor(price);
   if (amount <= 50) return 0;
@@ -34,33 +40,19 @@ export const calculateRewardPoints = (price) => {
  */
 export const getFilteredTransactions = (transactions, globalFilters) => {
   try {
-    return transactions.filter((transaction) => {
-      const date = new Date(transaction.purchaseDate);
-
-      // Check if the transaction customerName contains the filter string.
-      if (
-        globalFilters.customerName &&
-        !transaction.customerName
-          .toLowerCase()
-          .includes(globalFilters.customerName.toLowerCase())
-      ) {
-        return false;
-      }
-
-      // If fromDate is provided, exclude transactions before this date.
-      if (globalFilters.fromDate && date < new Date(globalFilters.fromDate)) {
-        return false;
-      }
-
-      // If toDate is provided, exclude transactions after this date.
-      if (globalFilters.toDate && date > new Date(globalFilters.toDate)) {
-        return false;
-      }
-      return true;
+    const { customerName, fromDate, toDate } = globalFilters;
+    return transactions.filter(({ purchaseDate, customerName: name }) => {
+      const date = new Date(purchaseDate);
+      return (
+        (!customerName ||
+          name.toLowerCase().includes(customerName.toLowerCase())) &&
+        (!fromDate || date >= new Date(fromDate)) &&
+        (!toDate || date <= new Date(toDate))
+      );
     });
   } catch (error) {
-    console.error("Error in getFilteredTransactions:", error);
-    throw new Error(error);
+    logger.error("Error in getFilteredTransactions:", error);
+    throw error;
   }
 };
 
@@ -77,7 +69,7 @@ export const attachedRewardPoints = (transactions) => {
       rewardPoints: calculateRewardPoints(transaction.price),
     }));
   } catch (error) {
-    console.error("Error in attachedRewardPoints:", error);
+    logger.error("Error in attachedRewardPoints:", error);
     throw new Error(error);
   }
 };
@@ -100,7 +92,7 @@ export const getTransactionsWithRewards = (
     );
     return attachedRewardPoints(filteredTransactions);
   } catch (error) {
-    console.error("Error in getTransactionsWithRewards:", error);
+    logger.error("Error in getTransactionsWithRewards:", error);
     throw new Error(error);
   }
 };
@@ -151,7 +143,7 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
         const date = new Date(transaction.purchaseDate);
         // Skip if the transaction has an invalid date.
         if (isNaN(date.getTime())) {
-          console.warn(
+          logger.error(
             `Invalid date for transaction id ${transaction.id}: ${transaction.purchaseDate}`
           );
           return acc;
@@ -161,9 +153,7 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
         const month = getMonthString(monthIndex);
         const year = date.getFullYear();
 
-        // Create key for grouping by customer, year, and month.
         const key = `${transaction.customerId}_${year}_${month}`;
-        // Use the already computed rewardPoints.
         const points = transaction.rewardPoints;
 
         if (!acc[key]) {
@@ -191,7 +181,7 @@ export const getMonthlyRewards = (transactions, globalFilters = {}) => {
         a.monthIndex - b.monthIndex
     );
   } catch (error) {
-    console.error("Error in getMonthlyRewards:", error);
+    logger.error("Error in getMonthlyRewards:", error);
     throw new Error(error);
   }
 };
@@ -231,7 +221,7 @@ export const getTotalRewards = (transactions, globalFilters = {}) => {
       a.customerName.localeCompare(b.customerName)
     );
   } catch (error) {
-    console.error("Error in getTotalRewards:", error);
+    logger.error("Error in getTotalRewards:", error);
     throw new Error(error);
   }
 };

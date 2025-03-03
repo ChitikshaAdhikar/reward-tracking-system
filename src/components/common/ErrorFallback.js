@@ -1,10 +1,6 @@
-/**
- * @file ErrorFallback.js
- * @description A fallback UI component that displays an error message when an error is caught by an ErrorBoundary.
- */
-
 import React from "react";
 import { Card, CardContent, Box } from "@mui/material";
+import Proptypes from "prop-types";
 
 /**
  * @file ErrorFallback.js
@@ -36,5 +32,7 @@ const ErrorFallback = ({ error }) => {
     </Box>
   );
 };
-
+ErrorFallback.propTypes = {
+  error: Proptypes.object,
+};
 export default ErrorFallback;

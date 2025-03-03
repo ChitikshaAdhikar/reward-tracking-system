@@ -1,11 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-import GenericTable from "./commonComponents/GenericTable";
+import GenericTable from "./common/GenericTable";
 import {
   applySorting,
   applyPagination,
 } from "../utils/dataTransformationUtils";
 import { getMonthlyRewards } from "../utils/rewardsCalculator";
+import Logger from "../utils/logger";
+import useTableControls from "../hooks/useTableControls";
 
 /**
  * @file MonthlyRewards.js
@@ -18,53 +20,37 @@ import { getMonthlyRewards } from "../utils/rewardsCalculator";
  * @param {Object} props.globalFilters - Global filters (customerName, fromDate, toDate) to apply on transactions.
  * @returns {JSX.Element} The rendered MonthlyRewards table.
  */
-
+ const logger = new Logger("error")
 const MonthlyRewards = ({ transactions, globalFilters }) => {
-  // Local state to handle sorting
-  const [sorting, setSorting] = useState({
-    column: "year",
-    order: "desc",
-  });
-
-  // Local state to manage pagination with default values.
-  const [pagination, setPagination] = useState({ page: 0, rowsPerPage: 5 });
+  const { sorting, pagination, handleSort, handleChangePage } =
+    useTableControls(
+      {
+        column: "year",
+        order: "desc",
+      },
+      { page: 0, rowsPerPage: 5 }
+    );
 
   //Get filtered monthly rewards data by applying the global filters.
   const filteredMonthlyRewards = useMemo(() => {
     try {
       return getMonthlyRewards(transactions, globalFilters);
     } catch (error) {
-      console.error("Error computing monthly rewards:", error);
-      throw new Error(error);
+      logger.error("Error computing monthly rewards:", error);
+      throw Error(error);
     }
   }, [transactions, globalFilters]);
 
-  // Apply sorting to the filtered monthly rewards
   const sortedData = useMemo(
     () => applySorting(filteredMonthlyRewards, sorting),
     [filteredMonthlyRewards, sorting]
   );
 
-  // Apply pagination to the sorted data
   const paginatedData = useMemo(
     () => applyPagination(sortedData, pagination.page, pagination.rowsPerPage),
     [sortedData, pagination]
   );
 
-  // Handler function for sorting
-  const handleSort = (column) => {
-    setSorting((prev) => ({
-      column,
-      order: prev.column === column && prev.order === "asc" ? "desc" : "asc",
-    }));
-  };
-
-  // Handler function for pagination
-  const handleChangePage = (event, newPage) => {
-    setPagination((prev) => ({ ...prev, page: newPage }));
-  };
-
-  // Define the columns for the table with headers.
   const columns = [
     { id: "customerId", label: "Customer Id", sortable: true },
     { id: "customerName", label: "Customer Name", sortable: true },

@@ -1,5 +1,4 @@
-// transaction.service.test.js
-import { fetchTransactions } from "../services/transaction.service";
+import { fetchTransactions } from "../services/fetchTransactions";
 
 describe("fetchTransactions", () => {
   beforeEach(() => {
@@ -10,7 +9,7 @@ describe("fetchTransactions", () => {
     jest.resetAllMocks();
   });
 
-  test("returns transactions when fetch is successful", async () => {
+  it("returns transactions when fetch is successful", async () => {
     const mockData = {
       transactions: [
         {
@@ -31,14 +30,12 @@ describe("fetchTransactions", () => {
     expect(result).toEqual(mockData.transactions);
   });
 
-  test("throws an error when response is not ok", async () => {
+  it("Return empty transaction when response is not ok", async () => {
     global.fetch.mockResolvedValue({
       ok: false,
       json: jest.fn().mockResolvedValue({}),
     });
 
-    await expect(fetchTransactions()).rejects.toThrow(
-      "Failed to fetch transactions"
-    );
+    await expect(fetchTransactions()).resolves.toEqual([]);
   });
 });

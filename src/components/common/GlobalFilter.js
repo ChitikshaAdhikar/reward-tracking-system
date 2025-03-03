@@ -17,25 +17,20 @@ import { Box, TextField, Button } from "@mui/material";
  * @returns {JSX.Element} The rendered GlobalFilter component.
  */
 const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
-  // Initialize state with the initial filters passed from the parent.
   const [localFilters, setLocalFilters] = useState(initialFilters);
 
-  // Update local state if initialFilters prop changes.
   useEffect(() => {
     setLocalFilters(initialFilters);
   }, [initialFilters]);
 
-  //Updates a specific filter field in the localFilters state.
   const handleChange = (field, value) => {
     setLocalFilters((prev) => ({ ...prev, [field]: value }));
   };
 
-  //Invokes the onApply with the current localFilters.
   const handleApply = () => {
     onApply(localFilters);
   };
 
-  //Resets the filter values to empty strings and invokes the onReset.
   const handleReset = () => {
     const resetFilters = { customerName: "", fromDate: "", toDate: "" };
     setLocalFilters(resetFilters);
@@ -52,7 +47,6 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
         borderBottom: "1px solid #ccc",
       }}
     >
-      {/* Filter inputs container */}
       <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
         <TextField
           label="Customer Name"
@@ -65,7 +59,6 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
           label="From Date"
           variant="outlined"
           type="date"
-          // Used slotProps to ensure the label remains shrunk above the input
           slotProps={{ inputLabel: { shrink: true } }}
           value={localFilters.fromDate || ""}
           onChange={(e) => handleChange("fromDate", e.target.value)}
@@ -79,7 +72,6 @@ const GlobalFilter = ({ initialFilters, onApply, onReset }) => {
           onChange={(e) => handleChange("toDate", e.target.value)}
         />
       </Box>
-      {/* Action buttons container */}
       <Box sx={{ display: "flex", gap: 1 }}>
         <Button
           variant="contained"

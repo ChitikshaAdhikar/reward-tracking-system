@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import GlobalFilter from "../components/commonComponents/GlobalFilter";
+import GlobalFilter from "../components/common/GlobalFilter";
 
 describe("GlobalFilter Component", () => {
   const initialFilters = { customerName: "", fromDate: "", toDate: "" };

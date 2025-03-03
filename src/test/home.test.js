@@ -1,9 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Home from "../screens/Home";
-import { fetchTransactions } from "../services/transaction.service";
+import { fetchTransactions } from "../services/fetchTransactions";
 
-// Sample transactions data for testing.
 const mockTransactions = [
   {
     id: 1,
@@ -35,12 +34,11 @@ const mockTransactions = [
   },
 ];
 
-// Mock the fetchTransactions service.
-jest.mock("../services/transaction.service", () => ({
+
+jest.mock("../services/fetchTransactions", () => ({
   fetchTransactions: jest.fn(),
 }));
 
-// Mock child components so we can easily identify which view is rendered.
 jest.mock("../components/Transactions", () => (props) => (
   <div data-testid="transactions-component">Transactions Component</div>
 ));
@@ -50,7 +48,7 @@ jest.mock("../components/MonthlyRewards", () => (props) => (
 jest.mock("../components/TotalRewards", () => (props) => (
   <div data-testid="totalRewards-component">TotalRewards Component</div>
 ));
-jest.mock("../components/commonComponents/GlobalFilter", () => (props) => (
+jest.mock("../components/common/GlobalFilter", () => (props) => (
   <div data-testid="global-filter">GlobalFilter Component</div>
 ));
 
@@ -59,7 +57,6 @@ describe("Home Component", () => {
     fetchTransactions.mockReset();
   });
 
-  // Test that the Transactions view is rendered when currentTab is "transactions".
   it("renders Transactions view when currentTab is transactions", async () => {
     fetchTransactions.mockResolvedValue(mockTransactions);
     render(<Home currentTab="transactions" />);
@@ -70,7 +67,6 @@ describe("Home Component", () => {
     expect(screen.getByTestId("global-filter")).toBeInTheDocument();
   });
 
-  // Test that the MonthlyRewards view is rendered when currentTab is "monthlyRewards".
   it("renders MonthlyRewards view when currentTab is monthlyRewards", async () => {
     fetchTransactions.mockResolvedValue(mockTransactions);
     render(<Home currentTab="monthlyRewards" />);
@@ -80,7 +76,6 @@ describe("Home Component", () => {
     expect(monthlyRewardsComponent).toBeInTheDocument();
   });
 
-  // Test that the TotalRewards view is rendered when currentTab is "totalRewards".
   it("renders TotalRewards view when currentTab is totalRewards", async () => {
     fetchTransactions.mockResolvedValue(mockTransactions);
     render(<Home currentTab="totalRewards" />);
@@ -89,10 +84,7 @@ describe("Home Component", () => {
     );
     expect(totalRewardsComponent).toBeInTheDocument();
   });
-
-  // Negative test: When no transactions are fetched, the child component should not render any data.
-  // Here, we assume that if no transactions are available, the table rows (with data-testid "table-row") will not be present.
-  it("renders empty state when fetched transactions array is empty", async () => {
+ it("renders empty state when fetched transactions array is empty", async () => {
     fetchTransactions.mockResolvedValue([]);
     render(<Home currentTab="transactions" />);
     await screen.findByTestId("global-filter");

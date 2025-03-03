@@ -44,14 +44,12 @@ const GenericTable = ({
   pagination,
   rowKey,
 }) => {
-  //Handles sorting for a given column.
   const handleSort = (columnId) => {
     if (onSort) {
       onSort(columnId);
     }
   };
   const getTextAlign = (columnId) => {
-    // Right Aligning the trasaction price and rewards.
     return columnId === "rewardPoints" || columnId === "price"
       ? "right"
       : "left";
